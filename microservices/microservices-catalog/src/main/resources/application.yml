@@ -1,0 +1,21 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+---
+
+spring:
+  profiles: default
+  jpa:
+    database: HSQL
+
+---
+
+spring:
+  profiles: cloud
+  jpa:
+    database: MYSQL
+eureka:
+  instance:
+    hostname: ms-catalog-service.cf.deepsouthcloud.com
+    nonSecurePort: 80

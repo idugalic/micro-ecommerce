@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>io.pivotal.microservices</groupId>
+	<artifactId>microservices-ecommerce-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>Microservices Ecommerce</name>
+	
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.2.0.RC2</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	
+	<modules>
+		<module>microservices-catalog</module>
+		<module>microservices-reviews</module>
+		<module>microservices-recommendations</module>
+		<module>microservices-api-gateway</module>
+		<module>microservices-config-server</module>
+		<module>microservices-eureka</module>
+		<module>microservices-hystrix-dashboard</module>
+	</modules>
+
+	<repositories>
+		<repository>
+			<id>repo.spring.io-milestones</id>
+			<name>repo.spring.io-milestones</name>
+			<url>http://repo.spring.io/libs-milestone-local</url>
+		</repository>
+		<repository>
+			<id>repo.spring.io-snapshots</id>
+			<name>repo.spring.io-snapshots</name>
+			<url>http://repo.spring.io/libs-snapshot-local</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-libs-release</id>
+			<url>http://repo.spring.io/libs-release-local</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+</project>

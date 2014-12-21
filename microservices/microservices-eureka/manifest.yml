@@ -1,0 +1,6 @@
+---
+applications:
+- name: ms-service-registry
+  memory: 512M
+  instances: 1
+  path: target/microservices-eureka-0.0.1-SNAPSHOT.jar

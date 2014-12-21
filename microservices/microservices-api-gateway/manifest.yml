@@ -1,0 +1,10 @@
+---
+applications:
+- name: ms-api-gateway-service
+  memory: 512M
+  instances: 1
+  path: target/microservices-api-gateway-0.0.1-SNAPSHOT.jar
+  env:
+      SPRING_PROFILES_ACTIVE: cloud
+  services:
+  - eureka-service

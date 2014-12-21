@@ -1,0 +1,11 @@
+server:
+  port: 8081
+
+---
+
+spring:
+  profiles: cloud
+eureka:
+  instance:
+    hostname: ms-reviews-service.cf.deepsouthcloud.com
+    nonSecurePort: 80

@@ -1,0 +1,13 @@
+---
+applications:
+- name: ms-catalog-service
+  memory: 512M
+  timeout: 90
+  instances: 1
+  path: build/libs/catalog-0.0.1-SNAPSHOT.jar
+  env:
+    SPRING_PROFILES_ACTIVE: cloud
+  services:
+  - catalog-db
+  - service-registry
+

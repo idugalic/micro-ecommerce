@@ -1,0 +1,11 @@
+server:
+  port: 8082
+
+---
+
+spring:
+  profiles: cloud
+eureka:
+  instance:
+    hostname: ms-recommendations-service.cf.deepsouthcloud.com
+    nonSecurePort: 80
