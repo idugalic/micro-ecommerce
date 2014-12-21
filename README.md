@@ -19,3 +19,6 @@ Configuration and management services:
 ## Running Instructions
 - Before try to run the services, make sure you have Neo4J and MongoDB running on localhost (on default ports).
 - To run the services localy, just execute "mvn spring-boot:run" in each project subfolder.
+
+### Docker images
+todo
