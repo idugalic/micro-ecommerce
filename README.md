@@ -2,6 +2,8 @@
 
 Refer to a doc folder for more information.
 
+There is nice spring guide also: https://spring.io/guides/tutorials/bookmarks/
+
  Four Spring Boot based Maven projects that are standalone applications (microservices):
 
 - Catalog(JPA-SQL movie calatlog).
