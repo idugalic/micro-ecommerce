@@ -2,24 +2,28 @@ package io.pivotal.microservices.reviews;
 
 import io.pivotal.microservices.reviews.models.Review;
 import io.pivotal.microservices.reviews.repositories.ReviewRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
+import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @EnableMongoRepositories
-@EnableEurekaClient
+@EnableDiscoveryClient
 @RestController
-public class Application implements CommandLineRunner {
+public class Application extends RepositoryRestMvcConfiguration implements CommandLineRunner {
 
     @Autowired
     ReviewRepository reviewRepository;
@@ -32,6 +36,12 @@ public class Application implements CommandLineRunner {
     public void run(String... strings) throws Exception {
         reviewRepository.deleteAll();
     }
+    
+    @Override
+   	protected void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
+   		config.exposeIdsFor(Review.class);
+   	}
+
 
     @RequestMapping(value = "/reviews/reviews", method = RequestMethod.GET)
     public Iterable<Review> reviews() {

@@ -1,15 +1,14 @@
 server:
   port: 9000
-
+      
 zuul:
-  proxy:
-    mapping: /api
-    addProxyHeaders: true
-    route:
-      reviews-service: /reviews
-      catalog-service: /catalog
-      recommendations-service: /recommendations
-
+  routes:
+    catalog-service:
+      path: /catalog/**
+    reviews-service:
+      path: /reviews/**
+    recommendations-service:
+      path: /recommendations/**
 ---
 
 spring:
