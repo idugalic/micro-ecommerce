@@ -10,11 +10,11 @@ import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
 
 import com.westum.recommendations.model.Likes;
-import com.westum.recommendations.model.Movie;
 import com.westum.recommendations.model.Person;
+import com.westum.recommendations.model.Product;
 import com.westum.recommendations.repositories.LikesRepository;
-import com.westum.recommendations.repositories.MovieRepository;
 import com.westum.recommendations.repositories.PersonRepository;
+import com.westum.recommendations.repositories.ProductRepository;
 
 @SpringBootApplication
 @EnableNeo4jRepositories(basePackages = "com.westum.recommendations.repositories")
@@ -25,7 +25,7 @@ public class Application extends RepositoryRestMvcConfiguration implements Comma
     }
 
     @Autowired
-    MovieRepository movieRepository;
+    ProductRepository movieRepository;
     @Autowired
     PersonRepository personRepository;
     @Autowired
@@ -37,9 +37,9 @@ public class Application extends RepositoryRestMvcConfiguration implements Comma
         personRepository.deleteAll();
         likesRepository.deleteAll();
     }
-    @Override
-	protected void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-		config.exposeIdsFor(Movie.class, Likes.class, Person.class);
-	}
+//    @Override
+//	protected void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
+//		config.exposeIdsFor(Product.class, Likes.class, Person.class);
+//	}
 
 }

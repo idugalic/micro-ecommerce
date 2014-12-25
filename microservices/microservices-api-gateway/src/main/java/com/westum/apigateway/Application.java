@@ -44,16 +44,16 @@ public class Application {
     @Autowired
     RecommendationsIntegrationService recommendationsIntegrationService;
 
-    @RequestMapping("/movie/{mlId}")
-    public DeferredResult<MovieDetails> movieDetails(@PathVariable String mlId) {
+    @RequestMapping("/product/{productId}")
+    public DeferredResult<MovieDetails> movieDetails(@PathVariable String productId) {
         Observable<MovieDetails> details = Observable.zip(
-                catalogIntegrationService.getMovie(mlId),
-                reviewsIntegrationService.reviewsFor(mlId),
-                recommendationsIntegrationService.getRecommendations(mlId),
-                (movie, reviews, recommendations) -> {
+                catalogIntegrationService.getProduct(productId),
+                reviewsIntegrationService.reviewsFor(productId),
+                recommendationsIntegrationService.getRecommendations(productId),
+                (product, reviews, recommendations) -> {
                     MovieDetails movieDetails = new MovieDetails();
-                    movieDetails.setMlId(movie.getMlId());
-                    movieDetails.setTitle(movie.getTitle());
+                    movieDetails.setProductId(String.valueOf(product.getId()));
+                    movieDetails.setName(product.getName());
                     movieDetails.setReviews(reviews);
                     movieDetails.setRecommendations(recommendations);
                     return movieDetails;

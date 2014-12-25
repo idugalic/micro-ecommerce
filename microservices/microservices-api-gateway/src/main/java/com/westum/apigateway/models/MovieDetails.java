@@ -3,32 +3,33 @@ package com.westum.apigateway.models;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.westum.apigateway.services.recommendations.Movie;
+import com.westum.apigateway.services.recommendations.Product;
 import com.westum.apigateway.services.reviews.Review;
 
 public class MovieDetails {
-    private String title;
-    private String mlId;
+    private String name;
+    private String productId;
     private List<Review> reviews = new ArrayList<>();
-    private List<Movie> recommendations = new ArrayList<>();
+    private List<Product> recommendations = new ArrayList<>();
 
-    public String getTitle() {
-        return title;
-    }
+  
+    public String getName() {
+		return name;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getMlId() {
-        return mlId;
-    }
+	public String getProductId() {
+		return productId;
+	}
 
-    public void setMlId(String mlId) {
-        this.mlId = mlId;
-    }
+	public void setProductId(String productId) {
+		this.productId = productId;
+	}
 
-    public List<Review> getReviews() {
+	public List<Review> getReviews() {
         return reviews;
     }
 
@@ -36,11 +37,11 @@ public class MovieDetails {
         this.reviews = reviews;
     }
 
-    public List<Movie> getRecommendations() {
+    public List<Product> getRecommendations() {
         return recommendations;
     }
 
-    public void setRecommendations(List<Movie> recommendations) {
+    public void setRecommendations(List<Product> recommendations) {
         this.recommendations = recommendations;
     }
 }

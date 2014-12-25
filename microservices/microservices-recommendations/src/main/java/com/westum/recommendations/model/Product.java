@@ -5,23 +5,23 @@ import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 
 @NodeEntity
-public class Movie {
+public class Product {
 
     @GraphId
     private Long id;
 
     @Override
     public String toString() {
-        return "Movie{" +
+        return "Product{" +
                 "id=" + id +
-                ", mlId='" + mlId + '\'' +
-                ", title='" + title + '\'' +
+                ", productId='" + productId + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 
     @Indexed(unique = true)
-    private String mlId;
-    private String title;
+    private String productId;
+    private String name;
 
     public Long getId() {
         return id;
@@ -31,19 +31,21 @@ public class Movie {
         this.id = id;
     }
 
-    public String getMlId() {
-        return mlId;
-    }
+	public String getProductId() {
+		return productId;
+	}
 
-    public void setMlId(String mlId) {
-        this.mlId = mlId;
-    }
+	public void setProductId(String productId) {
+		this.productId = productId;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
+
+   
 }

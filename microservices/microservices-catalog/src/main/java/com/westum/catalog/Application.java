@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
 
-import com.westum.catalog.models.Genre;
-import com.westum.catalog.models.Movie;
+import com.westum.catalog.models.Category;
+import com.westum.catalog.models.Product;
 
 @SpringBootApplication
 @EnableJpaRepositories
@@ -17,7 +17,7 @@ public class Application extends RepositoryRestMvcConfiguration {
 
 	@Override
 	protected void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-		config.exposeIdsFor(Movie.class, Genre.class);
+		config.exposeIdsFor(Product.class, Category.class);
 	}
 	
     public static void main(String[] args) {

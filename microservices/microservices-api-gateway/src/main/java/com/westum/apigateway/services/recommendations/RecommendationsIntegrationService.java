@@ -33,13 +33,13 @@ public class RecommendationsIntegrationService {
             commandProperties = {
                     @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
             })
-    public Observable<List<Movie>> getRecommendations(final String mlId) {
-        return new ObservableResult<List<Movie>>() {
+    public Observable<List<Product>> getRecommendations(final String productId) {
+        return new ObservableResult<List<Product>>() {
             @Override
-            public List<Movie> invoke() {
+            public List<Product> invoke() {
             	//TODO do this better please !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				PagedResources<LinkedHashMap> resources = null;
-				List<Movie> result = null;
+				List<Product> result = null;
 
 				ObjectMapper mapper = new ObjectMapper();
 				mapper.configure(
@@ -54,30 +54,31 @@ public class RecommendationsIntegrationService {
 						.<HttpMessageConverter<?>> singletonList(converter));
 
 				resources = restTemplate
-						.exchange(
-								"http://recommendations-service/movies/search/moviesLikedByPeopleWhoLiked?mlId={mlId}",
+						.exchange("http://recommendations-service/products/search/productsLikedByPeopleWhoLiked?productId={productId}",
 								HttpMethod.GET, null, PagedResources.class,
-								mlId).getBody();
-				result = new ArrayList<Movie>();
+								productId).getBody();
+				result = new ArrayList<Product>();
 				for (LinkedHashMap review : resources.getContent()) {
-					Movie mov = new Movie();
-					mov.setMlId((String) review.get("mlId"));
-					mov.setTitle((String) review.get("title"));
-					result.add(mov);
+					Product prod = new Product();
+					prod.setProductId((String) review.get("productId"));
+					
+					prod.setName((String) review.get("name"));
+					
+					result.add(prod);
 				}
-
+				
 				return result;
             }
         };
     }
 
-    private List<Movie> stubRecommendations(final String mlId) {
-        Movie one = new Movie();
-        one.setMlId("25");
-        one.setMlId("A movie which doesn't exist");
-        Movie two = new Movie();
-        two.setMlId("26");
-        two.setMlId("A movie about nothing");
+    private List<Product> stubRecommendations(final String mlId) {
+        Product one = new Product();
+        one.setProductId("1");
+        one.setName("No name");
+        Product two = new Product();
+        two.setProductId("2");
+        two.setName("No name 2");
         return Arrays.asList(one, two);
     }
 }

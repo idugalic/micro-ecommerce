@@ -7,7 +7,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.hateoas.PagedResources;
 import org.springframework.hateoas.hal.Jackson2HalModule;
 import org.springframework.http.HttpMethod;
@@ -31,7 +30,7 @@ public class ReviewsIntegrationService {
 	RestTemplate restTemplate;
 
 	@HystrixCommand(fallbackMethod = "stubReviews")
-	public Observable<List<Review>> reviewsFor(String mlId) {
+	public Observable<List<Review>> reviewsFor(String productId) {
 		return new ObservableResult<List<Review>>() {
 			@Override
 			public List<Review> invoke() {
@@ -53,16 +52,16 @@ public class ReviewsIntegrationService {
 
 				resources = restTemplate
 						.exchange(
-								"http://reviews-service/reviews/search/findByMlId?mlId={mlId}",
+								"http://reviews-service/reviews/search/findByProductId?productId={productId}",
 								HttpMethod.GET, null, PagedResources.class,
-								mlId).getBody();
+								productId).getBody();
 				result = new ArrayList<Review>();
 				for (LinkedHashMap review : resources.getContent()) {
 					Review rev = new Review();
-					rev.setMlId((String) review.get("mlId"));
+					rev.setProductId((String) review.get("productId"));
 					rev.setRating((int) review.get("rating"));
 					rev.setReview((String) review.get("review"));
-					rev.setTitle((String) review.get("title"));
+					rev.setName((String) review.get("name"));
 					rev.setUserName((String) review.get("userName"));
 					result.add(rev);
 				}
@@ -72,13 +71,13 @@ public class ReviewsIntegrationService {
 		};
 	}
 
-	private List<Review> stubReviews(String mlId) {
+	private List<Review> stubReviews(String productId) {
 		Review review = new Review();
-		review.setMlId(mlId);
-		review.setRating(4);
-		review.setTitle("Interesting...the wrong title. Sssshhhh!");
-		review.setReview("Awesome sauce!");
-		review.setUserName("joeblow");
+		review.setProductId(productId);
+		review.setRating(1);
+		review.setName("Service not available !!!");
+		review.setReview("No review");
+		review.setUserName("nousername");
 		return Arrays.asList(review);
 	}
 

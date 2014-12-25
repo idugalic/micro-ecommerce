@@ -15,7 +15,7 @@ public class Likes {
     private Person person;
 
     @EndNode
-    private Movie movie;
+    private Product product;
 
     public Long getId() {
         return id;
@@ -33,20 +33,20 @@ public class Likes {
         this.person = person;
     }
 
-    public Movie getMovie() {
-        return movie;
-    }
+    public Product getProduct() {
+		return product;
+	}
 
-    public void setMovie(Movie movie) {
-        this.movie = movie;
-    }
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 
-    @Override
+	@Override
     public String toString() {
         return "Likes{" +
                 "id=" + id +
                 ", person=" + person +
-                ", movie=" + movie +
+                ", product=" + product +
                 '}';
     }
 }

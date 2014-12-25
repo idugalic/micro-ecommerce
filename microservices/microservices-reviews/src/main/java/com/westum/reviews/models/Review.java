@@ -8,12 +8,12 @@ public class Review {
     private String id;
 
     @Indexed
-    private String mlId;
+    private String productId;
 
     @Indexed
     private String userName;
 
-    private String title;
+    private String name;
 
     private String review;
 
@@ -27,15 +27,23 @@ public class Review {
         this.id = id;
     }
 
-    public String getMlId() {
-        return mlId;
-    }
+    public String getProductId() {
+		return productId;
+	}
 
-    public void setMlId(String mlId) {
-        this.mlId = mlId;
-    }
+	public void setProductId(String productId) {
+		this.productId = productId;
+	}
 
-    public String getUserName() {
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getUserName() {
         return userName;
     }
 
@@ -43,13 +51,7 @@ public class Review {
         this.userName = userName;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
+   
 
     public String getReview() {
         return review;
