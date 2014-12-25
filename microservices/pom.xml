@@ -23,6 +23,7 @@
 		<module>microservices-config-server</module>
 		<module>microservices-eureka</module>
 		<module>microservices-hystrix-dashboard</module>
+		<module>microservices-orders</module>
 	</modules>
 	
 	<properties>

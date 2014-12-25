@@ -1,0 +1,33 @@
+server:
+  port: 8083
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+## Info endpoint
+info:
+  app:
+    name: Orders management service
+    description: Orders  Management Microservice
+  build:
+    artifact: ${project.artifactId}
+    name: ${project.name}
+    description: ${project.description}
+    version: ${project.version}
+---
+
+spring:
+  profiles: default
+  jpa:
+    database: HSQL
+
+---
+
+spring:
+  profiles: cloud
+  jpa:
+    database: MYSQL
+eureka:
+  instance:
+    hostname: ms-catalog-service.cf.deepsouthcloud.com
+    nonSecurePort: 80

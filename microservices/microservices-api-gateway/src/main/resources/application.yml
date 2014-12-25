@@ -9,6 +9,8 @@ zuul:
       path: /reviews/**
     recommendations-service:
       path: /recommendations/**
+    orders-service:
+      path: /orders/**
 ---
 
 spring:
