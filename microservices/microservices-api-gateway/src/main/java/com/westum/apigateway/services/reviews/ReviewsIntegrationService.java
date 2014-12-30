@@ -34,9 +34,9 @@ public class ReviewsIntegrationService {
 	@HystrixCommand(fallbackMethod = "stubReviews")
 	public Observable<List<Review>> reviewsFor(String productId, final String token) {
 		return new ObservableResult<List<Review>>() {
+			@SuppressWarnings({ "unchecked", "rawtypes" })
 			@Override
 			public List<Review> invoke() {
-//TODO do this better please !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				PagedResources<LinkedHashMap> resources = null;
 				List<Review> result = null;
 
@@ -77,6 +77,7 @@ public class ReviewsIntegrationService {
 		};
 	}
 
+	@SuppressWarnings("unused")
 	private List<Review> stubReviews(String productId, final String token) {
 		Review review = new Review();
 		review.setProductId(productId);

@@ -37,9 +37,9 @@ public class RecommendationsIntegrationService {
             })
     public Observable<List<Product>> getRecommendations(final String productId, final String token) {
         return new ObservableResult<List<Product>>() {
-            @Override
+            @SuppressWarnings({ "unchecked", "rawtypes" })
+			@Override
             public List<Product> invoke() {
-            	//TODO do this better please !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				PagedResources<LinkedHashMap> resources = null;
 				List<Product> result = null;
 
@@ -59,8 +59,7 @@ public class RecommendationsIntegrationService {
 				headers.add("Authorization",token);
 				HttpEntity<String> request = new HttpEntity<String>(headers);
 
-				resources = restTemplate
-						.exchange("http://recommendations-service/products/search/productsLikedByPeopleWhoLiked?productId={productId}",
+				resources = restTemplate.exchange("http://recommendations-service/products/search/productsLikedByPeopleWhoLiked?productId={productId}",
 								HttpMethod.GET, request, PagedResources.class,
 								productId).getBody();
 				result = new ArrayList<Product>();
@@ -78,7 +77,8 @@ public class RecommendationsIntegrationService {
         };
     }
 
-    private List<Product> stubRecommendations(final String mlId, final String token) {
+    @SuppressWarnings("unused")
+	private List<Product> stubRecommendations(final String mlId, final String token) {
         Product one = new Product();
         one.setProductId("1");
         one.setName("No name");
