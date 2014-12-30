@@ -7,6 +7,7 @@ import org.springframework.hateoas.hal.Jackson2HalModule;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.security.oauth2.client.OAuth2RestOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -22,6 +23,8 @@ public class CatalogIntegrationService {
 
     @Autowired
     RestTemplate restTemplate;
+    @Autowired
+    OAuth2RestOperations oauth2RestTemplate;
 
     @HystrixCommand(fallbackMethod = "stubProduct")
     public Observable<Product> getProduct(final String productId) {
@@ -40,7 +43,7 @@ public class CatalogIntegrationService {
 				converter.setObjectMapper(mapper);
 				restTemplate.setMessageConverters(Collections
 						.<HttpMessageConverter<?>> singletonList(converter));
-				Product resutl = restTemplate.getForObject("http://catalog-service/products/{productId}", Product.class, productId);
+				Product resutl = oauth2RestTemplate.getForObject("http://catalog-service/products/{productId}", Product.class, productId);
 				
 				return resutl;
 				

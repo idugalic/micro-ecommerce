@@ -16,6 +16,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.security.oauth2.resource.EnableOAuth2Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
@@ -30,6 +31,7 @@ import com.westum.orders.payment.domain.Payment;
 @EnableJpaRepositories
 @EnableDiscoveryClient
 @EnableAsync
+@EnableOAuth2Resource
 public class Application extends RepositoryRestMvcConfiguration {
 	
 	@Override

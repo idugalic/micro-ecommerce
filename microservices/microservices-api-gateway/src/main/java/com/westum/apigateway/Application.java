@@ -6,8 +6,12 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.cloud.security.oauth2.client.ClientConfiguration;
+import org.springframework.cloud.security.oauth2.resource.EnableOAuth2Resource;
+import org.springframework.cloud.security.oauth2.sso.OAuth2SsoConfigurerAdapter;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,7 +31,9 @@ import rx.Observer;
 @EnableDiscoveryClient 
 @EnableZuulProxy
 @EnableCircuitBreaker
+@EnableOAuth2Resource
 @RestController
+@Import(ClientConfiguration.class)
 public class Application {
 
     public static void main(String[] args) {
@@ -43,6 +49,14 @@ public class Application {
 
     @Autowired
     RecommendationsIntegrationService recommendationsIntegrationService;
+   
+    @Configuration
+    protected static class TestConfiguration extends OAuth2SsoConfigurerAdapter {
+        @Override
+        public void match(RequestMatchers matchers) {
+            matchers.antMatchers("/**");
+        }
+    }
 
     @RequestMapping("/product/{productId}")
     public DeferredResult<MovieDetails> movieDetails(@PathVariable String productId) {

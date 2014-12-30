@@ -11,6 +11,18 @@ info:
     name: ${project.name}
     description: ${project.description}
     version: ${project.version}
+    
+oauth2:
+  resource:
+    jwt:
+      keyUri: http://localhost:9999/uaa/oauth/token_key
+    id: openid
+    serviceId: ${PREFIX:}resource
+  client:
+    tokenUri: http://localhost:9999/uaa/oauth/token
+    authorizationUri: http://localhost:9999/uaa/oauth/authorize
+    clientId: acme
+    clientSecret: acmesecret    
 
 
 ---
