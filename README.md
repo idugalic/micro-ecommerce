@@ -28,13 +28,17 @@ Configuration and management services:
 - After you run services, trigger shell scripts under script folder of each service to create sample data.
 
 #### Usage
-There is one user (user:password) and one client configured for testing.
 
-First you need to get the token by using password grant type (exchange password for token).
-Second, request for protected URL (catalog service)
-
-- $ curl -X POST -vu acme:acmesecret http://localhost:9999/uaa/oauth/token -H "Accept: application/json" -d "password=password&username=user&grant_type=password&scope=openid&client_secret=acmesecret&client_id=acme"
-- $ curl http://localhost:8080/ -H "Authorization: Bearer <YOUR TOKEN>"
+- Get a token: $ curl -X POST -vu acme:acmesecret http://localhost:9999/uaa/oauth/token -H "Accept: application/json" -d "password=password&username=user&grant_type=password&scope=openid&client_secret=acmesecret&client_id=acme"
+- Catalog service: $ curl http://localhost:8080/ -H "Authorization: Bearer <YOUR TOKEN>"
+- Reviews service: $ curl http://localhost:8081/ -H "Authorization: Bearer <YOUR TOKEN>"
+- Recommendations service: $ curl http://localhost:8082/ -H "Authorization: Bearer <YOUR TOKEN>"
+- Orders service: $ curl http://localhost:8083/ -H "Authorization: Bearer <YOUR TOKEN>"
+- Catalog service(proxy) : $ curl http://localhost:9000/catalog -H "Authorization: Bearer <YOUR TOKEN>"
+- Reviews service(proxy): $ curl http://localhost:9000/reviews -H "Authorization: Bearer <YOUR TOKEN>"
+- Recommendations service(proxy): $ curl http://localhost:9000/recommendations -H "Authorization: Bearer <YOUR TOKEN>"
+- Orders service(proxy): $ curl http://localhost:9000/orders -H "Authorization: Bearer <YOUR TOKEN>"
+- Mobile service (agregate): $ curl http://localhost:9000/product/1 -H "Authorization: Bearer <YOUR TOKEN>"
 
 ### Docker images
 todo
