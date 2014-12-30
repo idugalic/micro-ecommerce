@@ -9,6 +9,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.PagedResources;
 import org.springframework.hateoas.hal.Jackson2HalModule;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -33,7 +35,7 @@ public class RecommendationsIntegrationService {
             commandProperties = {
                     @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
             })
-    public Observable<List<Product>> getRecommendations(final String productId) {
+    public Observable<List<Product>> getRecommendations(final String productId, final String token) {
         return new ObservableResult<List<Product>>() {
             @Override
             public List<Product> invoke() {
@@ -52,10 +54,14 @@ public class RecommendationsIntegrationService {
 				converter.setObjectMapper(mapper);
 				restTemplate.setMessageConverters(Collections
 						.<HttpMessageConverter<?>> singletonList(converter));
+				
+				HttpHeaders headers = new HttpHeaders();
+				headers.add("Authorization",token);
+				HttpEntity<String> request = new HttpEntity<String>(headers);
 
 				resources = restTemplate
 						.exchange("http://recommendations-service/products/search/productsLikedByPeopleWhoLiked?productId={productId}",
-								HttpMethod.GET, null, PagedResources.class,
+								HttpMethod.GET, request, PagedResources.class,
 								productId).getBody();
 				result = new ArrayList<Product>();
 				for (LinkedHashMap review : resources.getContent()) {
@@ -72,7 +78,7 @@ public class RecommendationsIntegrationService {
         };
     }
 
-    private List<Product> stubRecommendations(final String mlId) {
+    private List<Product> stubRecommendations(final String mlId, final String token) {
         Product one = new Product();
         one.setProductId("1");
         one.setName("No name");

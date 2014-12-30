@@ -1,5 +1,7 @@
 package com.westum.apigateway;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -12,18 +14,22 @@ import org.springframework.cloud.security.oauth2.sso.OAuth2SsoConfigurerAdapter;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.async.DeferredResult;
 
+import rx.Observable;
+import rx.Observer;
+
 import com.westum.apigateway.models.MovieDetails;
 import com.westum.apigateway.services.catalog.CatalogIntegrationService;
 import com.westum.apigateway.services.recommendations.RecommendationsIntegrationService;
 import com.westum.apigateway.services.reviews.ReviewsIntegrationService;
-
-import rx.Observable;
-import rx.Observer;
 
 @Configuration
 @ComponentScan
@@ -59,11 +65,12 @@ public class Application {
     }
 
     @RequestMapping("/product/{productId}")
-    public DeferredResult<MovieDetails> movieDetails(@PathVariable String productId) {
+    public DeferredResult<MovieDetails> movieDetails(@PathVariable String productId , HttpServletRequest request) {
+    	String token = request.getHeader("authorization");
         Observable<MovieDetails> details = Observable.zip(
-                catalogIntegrationService.getProduct(productId),
-                reviewsIntegrationService.reviewsFor(productId),
-                recommendationsIntegrationService.getRecommendations(productId),
+                catalogIntegrationService.getProduct(productId, token),
+                reviewsIntegrationService.reviewsFor(productId, token),
+                recommendationsIntegrationService.getRecommendations(productId, token),
                 (product, reviews, recommendations) -> {
                     MovieDetails movieDetails = new MovieDetails();
                     movieDetails.setProductId(String.valueOf(product.getId()));
