@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: orders-service
+    
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${vcap.services.eureka-service.credentials.host:http://127.0.0.1:8761}/eureka/

@@ -1,5 +1,17 @@
 server:
   port: 8082
+  
+## Info endpoint
+info:
+  app:
+    name: Recommendations service
+    description: Recommendations Microservice
+  build:
+    artifact: ${project.artifactId}
+    name: ${project.name}
+    description: ${project.description}
+    version: ${project.version}
+
 
 ---
 
