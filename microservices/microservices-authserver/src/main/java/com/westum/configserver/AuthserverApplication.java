@@ -3,13 +3,12 @@ package com.westum.configserver;
 import java.security.KeyPair;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.actuate.autoconfigure.ManagementServerProperties;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -45,11 +44,8 @@ public class AuthserverApplication extends WebMvcConfigurerAdapter {
 	}
 
 	@Configuration
-	@Order(ManagementServerProperties.ACCESS_OVERRIDE_ORDER)
-	protected static class LoginConfig extends WebSecurityConfigurerAdapter {
-		
-		@Autowired
-		private AuthenticationManager authenticationManager;
+	//@Order(ManagementServerProperties.ACCESS_OVERRIDE_ORDER)
+	protected static class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
@@ -59,15 +55,25 @@ public class AuthserverApplication extends WebMvcConfigurerAdapter {
 		
 		@Override
 		protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-			auth.parentAuthenticationManager(authenticationManager);
+			auth.inMemoryAuthentication().
+			withUser("idugalic").roles("ADMIN").password("idugalic").
+			and().
+			withUser("odugalic").roles("USER").password("odugalic");
+			
 		}
+		@Override
+	    @Bean
+	    public AuthenticationManager authenticationManagerBean() throws Exception {
+	        return super.authenticationManagerBean();
+	    }
 	}
 
 	@Configuration
 	@EnableAuthorizationServer
 	protected static class OAuth2Config extends AuthorizationServerConfigurerAdapter {
-
+		
 		@Autowired
+		@Qualifier("authenticationManagerBean")
 		private AuthenticationManager authenticationManager;
 
 		@Bean
@@ -85,8 +91,9 @@ public class AuthserverApplication extends WebMvcConfigurerAdapter {
 			clients.inMemory()
 					.withClient("acme")
 					.secret("acmesecret")
-					.authorizedGrantTypes("authorization_code", "refresh_token",
-							"password").scopes("openid");
+					.authorities("CLIENT")
+					.authorizedGrantTypes("authorization_code", "refresh_token", "client_credentials",
+							"password").scopes("openid","read_catalog","write_catalog","read_orders","write_orders","read_reviews","wite_reviews","read_recommendations","write_recommendations");
 		}
 
 		@Override
