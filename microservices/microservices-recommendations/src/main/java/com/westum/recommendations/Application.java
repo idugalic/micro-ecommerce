@@ -20,7 +20,6 @@ import com.westum.recommendations.repositories.ProductRepository;
 @SpringBootApplication
 @EnableNeo4jRepositories(basePackages = "com.westum.recommendations.repositories")
 @EnableDiscoveryClient
-@EnableOAuth2Resource
 public class Application extends RepositoryRestMvcConfiguration implements CommandLineRunner {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
