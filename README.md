@@ -1,16 +1,15 @@
 # Micro Ecommerce application (Microservices architecture style - REST)
 
-Refer to a doc folder for more information.
-
-There is nice spring guide also: https://spring.io/guides/tutorials/bookmarks/
+Simple ecommerce application 
 
 ##Overview
 
- Four Spring Boot based Maven projects that are standalone applications (microservices):
+ Spring Boot based Maven projects that are standalone applications (microservices):
 
-- Catalog(JPA-SQL movie calatlog).
-- Reviews (MongoDB movie reviews)
+- Catalog(JPA-SQL product calatlog).
+- Reviews (MongoDB product reviews)
 - Recommendations (Neo4J recommendations)
+- Orders (JPA)
 - API Gateway (Reactive API proxy)
 
 Configuration and management services:
@@ -24,7 +23,7 @@ Configuration and management services:
 ## Running Instructions
 ### Local
 - Before try to run the services, make sure you have Neo4J and MongoDB running on localhost (on default ports).
-- To run the services localy, just execute "mvn spring-boot:run" in each project subfolder.
+- To run the services localy, just execute "mvn spring-boot:run" in each project subfolder. Run Authorization server project first.
 - After you run services, trigger shell scripts under script folder of each service to create sample data.
 
 #### Usage
