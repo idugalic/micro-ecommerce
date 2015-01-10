@@ -1,4 +1,4 @@
-package com.westum.configserver;
+package com.westum.authserver;
 
 import java.security.KeyPair;
 
