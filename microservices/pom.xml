@@ -25,6 +25,7 @@
 		<module>microservices-reviews</module>
 		<module>microservices-recommendations</module>
 		<module>microservices-orders</module>
+		<module>client</module>
 	</modules>
 	
 	<properties>
