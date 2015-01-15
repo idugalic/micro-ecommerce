@@ -10,10 +10,13 @@
 <body ng-app="sso" ng-cloak class="ng-cloak">
 	<div ng-controller="navigation" class="container">
 		<ul class="nav nav-pills" role="tablist">
-			<li ng-class="{active:tab('home')}"><a href='#/'>home</a></li>
-			<li ng-class="{active:tab('dashboard')}" ng-show="authenticated"><a href='#/dashboard'>dashboard</a></li>
-			<li ng-class="{active:tab('product')}" ng-show="authenticated"><a href='#/product'>product no 1.</a></li>
-			<li ng-class="{active:tab('orders')}" ng-show="authenticated"><a href='#/orders'>orders</a></li>
+			<li ng-class="{active:tab('home')}"><a href='#/'>Home</a></li>
+			<li ng-class="{active:tab('dashboard')}" ng-show="authenticated"><a href='#/dashboard'>Dashboard</a></li>
+			<li ng-class="{active:tab('product')}" ng-show="authenticated"><a href='#/product'>Product no 1.</a></li>
+			<li ng-class="{active:tab('orders')}" ng-show="authenticated"><a href='#/orders'>Orders root</a></li>
+			<li ng-class="{active:tab('orders2')}" ng-show="authenticated"><a href='#/orders2'>All orders</a></li>
+			<li ng-class="{active:tab('hal')}" ng-show="authenticated"><a href='#/hal'>HAL Browser</a></li>
+			
 			<li><a href='dashboard/login'>login</a></li>
 			<li ng-show="authenticated"><a href='' ng-click="logout()">logout</a></li>
 		</ul>

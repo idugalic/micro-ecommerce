@@ -11,6 +11,12 @@ angular.module('sso', [ 'ngRoute', 'ngResource' ]).config(
 			}).when('/orders', {
 				templateUrl : 'orders.html',
 				controller : 'orders'
+			}).when('/orders2', {
+				templateUrl : 'orders.html',
+				controller : 'orders2'
+			}).when('/hal', {
+				templateUrl : 'browser/index.html'
+				
 			}).when('/product', {
 				templateUrl : 'productDetail.html',
 				controller : 'product'
@@ -48,6 +54,14 @@ angular.module('sso', [ 'ngRoute', 'ngResource' ]).config(
 }).controller('orders', function($scope, $resource) {
 
 	$resource('/dashboard/api/orders', {}).get({}, function(data) {
+		$scope.message = data;
+	}, function() {
+		$scope.message = 'test';
+	});
+
+}).controller('orders2', function($scope, $resource) {
+
+	$resource('/dashboard/api/orders/orders', {}).get({}, function(data) {
 		$scope.message = data;
 	}, function() {
 		$scope.message = 'test';

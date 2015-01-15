@@ -6,7 +6,7 @@ import java.util.List;
 import com.westum.apigateway.services.recommendations.Product;
 import com.westum.apigateway.services.reviews.Review;
 
-public class MovieDetails {
+public class ProductDetails {
     private String name;
     private String productId;
     private List<Review> reviews = new ArrayList<>();
