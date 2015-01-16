@@ -39,5 +39,18 @@ Configuration and management services:
 - Orders service(proxy): $ curl http://localhost:9000/orders -H "Authorization: Bearer <YOUR TOKEN>"
 - Mobile service (agregate): $ curl http://localhost:9000/product/1 -H "Authorization: Bearer <YOUR TOKEN>"
 
+#### HAL Browser.
+HAL browser is an API browser for the hal+json media type. 
+
+If you don't like command line CURL feel free to use HAL browser.
+It is available on the http://localhost:9000/browser/index.html address.
+
+Example of usage:
+
+
+- Get a token: $ curl -X POST -vu acme:acmesecret http://localhost:9999/uaa/oauth/token -H "Accept: application/json" -d "password=idugalic&username=idugalic&grant_type=password&scope=openid&client_secret=acmesecret&client_id=acme"
+- Paste your token in 'Custom Request Header' like this: Authorization: Bearer <YOUR TOKEN>
+- Explore the API :)
+
 ### Docker images
 todo
