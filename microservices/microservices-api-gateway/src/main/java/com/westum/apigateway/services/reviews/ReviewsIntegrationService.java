@@ -9,6 +9,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.PagedResources;
 import org.springframework.hateoas.hal.Jackson2HalModule;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -30,11 +32,11 @@ public class ReviewsIntegrationService {
 	RestTemplate restTemplate;
 
 	@HystrixCommand(fallbackMethod = "stubReviews")
-	public Observable<List<Review>> reviewsFor(String productId) {
+	public Observable<List<Review>> reviewsFor(String productId, final String token) {
 		return new ObservableResult<List<Review>>() {
+			@SuppressWarnings({ "unchecked", "rawtypes" })
 			@Override
 			public List<Review> invoke() {
-//TODO do this better please !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				PagedResources<LinkedHashMap> resources = null;
 				List<Review> result = null;
 
@@ -49,11 +51,15 @@ public class ReviewsIntegrationService {
 				converter.setObjectMapper(mapper);
 				restTemplate.setMessageConverters(Collections
 						.<HttpMessageConverter<?>> singletonList(converter));
-
+				
+				HttpHeaders headers = new HttpHeaders();
+				headers.add("Authorization",token);
+				HttpEntity<String> request = new HttpEntity<String>(headers);
+			
 				resources = restTemplate
 						.exchange(
 								"http://reviews-service/reviews/search/findByProductId?productId={productId}",
-								HttpMethod.GET, null, PagedResources.class,
+								HttpMethod.GET, request, PagedResources.class,
 								productId).getBody();
 				result = new ArrayList<Review>();
 				for (LinkedHashMap review : resources.getContent()) {
@@ -71,7 +77,8 @@ public class ReviewsIntegrationService {
 		};
 	}
 
-	private List<Review> stubReviews(String productId) {
+	@SuppressWarnings("unused")
+	private List<Review> stubReviews(String productId, final String token) {
 		Review review = new Review();
 		review.setProductId(productId);
 		review.setRating(1);

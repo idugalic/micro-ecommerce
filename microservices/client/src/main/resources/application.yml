@@ -1,0 +1,30 @@
+server:
+  port: 8088
+zuul:
+  routes:
+    api-gateway-service:
+      path: /dashboard/api/**
+security:
+  user:
+    password: user
+  ignored: /,/favicon.ico,/**/*.html,/js/**,/css/**,/webjars/**
+  sessions: ALWAYS
+oauth2:
+  sso:
+    loginPath: /dashboard/login
+    logoutPath: /dashboard/logout
+  client:
+    tokenUri: http://localhost:9999/uaa/oauth/token
+    authorizationUri: http://localhost:9999/uaa/oauth/authorize
+    clientId: acme
+    clientSecret: acmesecret
+  resource:
+    jwt:
+      keyUri: http://localhost:9999/uaa/oauth/token_key
+    id: openid
+    serviceId: ${PREFIX:}resource
+logging:
+  level:
+    org.springframework.security: DEBUG
+    com.netflix.discovery: 'OFF'
+    

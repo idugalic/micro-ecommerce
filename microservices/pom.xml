@@ -16,14 +16,16 @@
 	</parent>
 	
 	<modules>
-		<module>microservices-catalog</module>
-		<module>microservices-reviews</module>
-		<module>microservices-recommendations</module>
+	    <module>microservices-authserver</module>
 		<module>microservices-api-gateway</module>
 		<module>microservices-config-server</module>
 		<module>microservices-eureka</module>
 		<module>microservices-hystrix-dashboard</module>
+		<module>microservices-catalog</module>
+		<module>microservices-reviews</module>
+		<module>microservices-recommendations</module>
 		<module>microservices-orders</module>
+		<module>client</module>
 	</modules>
 	
 	<properties>
