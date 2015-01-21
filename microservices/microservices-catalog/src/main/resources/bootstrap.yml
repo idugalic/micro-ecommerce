@@ -1,8 +1,21 @@
 spring:
   application:
     name: catalog-service
-    
+  
 eureka:
   client:
     serviceUrl:
       defaultZone: ${vcap.services.eureka-service.credentials.host:http://127.0.0.1:8761}/eureka/
+
+---
+
+spring:
+  profiles: docker
+
+eureka:
+  instance:
+    hostname: 192.168.59.103
+    nonSecurePort: 8080
+  client:
+    serviceUrl:
+      defaultZone: http://${EUREKA_PORT_8761_TCP_ADDR:localhost}:8761/eureka/

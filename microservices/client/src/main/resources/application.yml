@@ -28,3 +28,24 @@ logging:
     org.springframework.security: DEBUG
     com.netflix.discovery: 'OFF'
     
+---
+
+spring:
+  profiles: docker
+  
+oauth2:
+  sso:
+    loginPath: /dashboard/login
+    logoutPath: /dashboard/logout
+  resource:
+    jwt:
+      keyUri: http://${AUTHSERVER_PORT_8761_TCP_ADDR:192.168.59.103}:9999/uaa/oauth/token_key
+    id: openid
+    serviceId: ${PREFIX:}resource
+  client:
+    tokenUri: http://${AUTHSERVER_PORT_8761_TCP_ADDR:192.168.59.103}:9999/uaa/oauth/token
+    authorizationUri: http://${AUTHSERVER_PORT_8761_TCP_ADDR:192.168.59.103}:9999/uaa/oauth/authorize
+    clientId: acme
+    clientSecret: acmesecret    
+
+    

@@ -93,7 +93,7 @@ public class AuthserverApplication extends WebMvcConfigurerAdapter {
 					.secret("acmesecret")
 					.authorities("CLIENT")
 					.authorizedGrantTypes("authorization_code", "refresh_token", "client_credentials",
-							"password").scopes("openid","read_catalog","write_catalog","read_orders","write_orders","read_reviews","wite_reviews","read_recommendations","write_recommendations");
+							"password").scopes("openid","read_catalog","write_catalog","read_orders","write_orders","read_reviews","write_reviews","read_recommendations","write_recommendations");
 		}
 
 		@Override

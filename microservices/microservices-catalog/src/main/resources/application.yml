@@ -27,17 +27,16 @@ oauth2:
 ---
 
 spring:
-  profiles: default
-  jpa:
-    database: HSQL
-
----
-
-spring:
-  profiles: cloud
-  jpa:
-    database: MYSQL
-eureka:
-  instance:
-    hostname: ms-catalog-service.cf.deepsouthcloud.com
-    nonSecurePort: 80
+  profiles: docker
+  
+oauth2:
+  resource:
+    jwt:
+      keyUri: http://${AUTHSERVER_PORT_8761_TCP_ADDR:192.168.59.103}:9999/uaa/oauth/token_key
+    id: openid
+    serviceId: ${PREFIX:}resource
+  client:
+    tokenUri: http://${AUTHSERVER_PORT_8761_TCP_ADDR:192.168.59.103}:9999/uaa/oauth/token
+    authorizationUri: http://${AUTHSERVER_PORT_8761_TCP_ADDR:192.168.59.103}:9999/uaa/oauth/authorize
+    clientId: acme
+    clientSecret: acmesecret    

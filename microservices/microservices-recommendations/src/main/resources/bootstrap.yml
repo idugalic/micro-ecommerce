@@ -1,3 +1,16 @@
 spring:
   application:
     name: recommendations-service
+
+---
+
+spring:
+  profiles: docker
+
+eureka:
+  instance:
+   hostname: 192.168.59.103
+    nonSecurePort: 8082
+  client:
+    serviceUrl:
+      defaultZone: http://${EUREKA_PORT_8761_TCP_ADDR:localhost}:8761/eureka/
