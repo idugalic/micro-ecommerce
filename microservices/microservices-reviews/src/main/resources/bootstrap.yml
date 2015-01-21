@@ -9,7 +9,7 @@ spring:
 
 eureka:
   instance:
-    hostname: 192.168.59.103
+    hostname: ${APPLICATION_DOMAIN}
     nonSecurePort: 8081
   client:
     serviceUrl:
