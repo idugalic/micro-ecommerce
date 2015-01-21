@@ -52,5 +52,9 @@ Example of usage:
 - Paste your token in 'Custom Request Header' like this: Authorization: Bearer <YOUR TOKEN>
 - Explore the API :)
 
-### Docker images
-todo
+### Docker
+You can run all your services and databases in Docker via Fig. 
+
+You have to install fig: http://www.fig.sh/install.html
+
+Or, you can use fig inside docker container: "docker run -v $(pwd):/app -v /var/run/docker.sock:/var/run/docker.sock -ti dduportal/fig up -d" from 'microservices' directory.
