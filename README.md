@@ -53,8 +53,8 @@ Example of usage:
 - Explore the API :)
 
 ### Docker
-You can run all your services and databases in Docker via Fig. 
-
-You have to install fig: http://www.fig.sh/install.html
-
-Or, you can use fig inside docker container: "docker run -v $(pwd):/app -v /var/run/docker.sock:/var/run/docker.sock -ti dduportal/fig up -d" from 'microservices' directory.
+- Before try to run the services, make sure you have Docker and Fig (optional) installed on your machine.
+- You can run all your services and databases in Docker via Fig. 'fig.yml' is provided in root folder. 
+- You can run/install all your services and databases with one command '$ fig run' from root folder.
+- Fig is not mandatory (I had some problems with 32bit version of fig on bot2docker for windows). You can run fig as Docker container '$ cdocker run -v $(pwd):/app -v /var/run/docker.sock:/var/run/docker.sock -ti dduportal/fig up -d'
+- NOTE: I am runing boot2docker for Windows. Docker is runing in virtual machine with IP of 192.168.59.103. This is externalized in Dockerfile-s!
