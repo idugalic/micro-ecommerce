@@ -44,7 +44,7 @@ public class Application
 	  public void configure(HttpSecurity http) throws Exception {
 	    http.requestMatchers().and().authorizeRequests()
 	     .antMatchers(HttpMethod.GET, "/products/**").access("#oauth2.hasScope('read_catalog') and (hasRole('ROLE_ADMIN') or hasRole('ROLE_USER'))")
-	     .antMatchers(HttpMethod.GET, "/catalogs/**").access("#oauth2.hasScope('read_catalog') and (hasRole('ROLE_ADMIN') or hasRole('ROLE_USER'))")
+	     .antMatchers(HttpMethod.GET, "/categories/**").access("#oauth2.hasScope('read_catalog') and (hasRole('ROLE_ADMIN') or hasRole('ROLE_USER'))")
 	     .antMatchers(HttpMethod.POST, "/**").access("#oauth2.hasScope('write_catalog') and hasRole('ROLE_ADMIN')")
 	     .antMatchers(HttpMethod.PUT, "/**").access("#oauth2.hasScope('write_catalog') and hasRole('ROLE_ADMIN')")
 	     .antMatchers(HttpMethod.DELETE, "/**").access("#oauth2.hasScope('write_catalog') and hasRole('ROLE_ADMIN')")

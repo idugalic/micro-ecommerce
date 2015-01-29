@@ -5,3 +5,16 @@ eureka:
   client:
     serviceUrl:
       defaultZone: ${vcap.services.eureka-service.credentials.host:http://127.0.0.1:8761}/eureka/
+
+---
+
+spring:
+  profiles: docker
+
+eureka:
+  instance:
+    hostname: ${APPLICATION_DOMAIN}
+    nonSecurePort: 9000
+  client:
+    serviceUrl:
+      defaultZone: http://${EUREKA_PORT_8761_TCP_ADDR:localhost}:8761/eureka/

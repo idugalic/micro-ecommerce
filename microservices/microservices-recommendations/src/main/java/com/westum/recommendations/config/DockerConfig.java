@@ -8,15 +8,14 @@ import org.springframework.data.neo4j.config.Neo4jConfiguration;
 import org.springframework.data.neo4j.rest.SpringRestGraphDatabase;
 
 @Configuration
-@Profile("default")
-public class LocalConfig extends Neo4jConfiguration {
-    public LocalConfig() {
+@Profile("docker")
+public class DockerConfig extends Neo4jConfiguration {
+    public DockerConfig() {
         setBasePackage("com.westum.recommendations.model");
     }
 
     @Bean
     public GraphDatabaseService graphDatabaseService() {
-        return new SpringRestGraphDatabase("http://localhost:7474/db/data/");
+        return new SpringRestGraphDatabase("http://192.168.59.103:7474/db/data/");
     }
-
 }

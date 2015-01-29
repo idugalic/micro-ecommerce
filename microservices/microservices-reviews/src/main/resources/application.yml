@@ -27,8 +27,23 @@ oauth2:
 ---
 
 spring:
-  profiles: cloud
-eureka:
-  instance:
-    hostname: ms-reviews-service.cf.deepsouthcloud.com
-    nonSecurePort: 80
+  profiles: docker
+  data:
+    mongodb:
+      host: ${MONGODB_PORT_27017_TCP_ADDR:192.168.59.103}
+      port: 27017
+      uri: mongodb://${MONGODB_PORT_27017_TCP_ADDR:192.168.59.103}/reviews
+  
+oauth2:
+  resource:
+    jwt:
+      keyUri: http://${AUTHSERVER_PORT_8761_TCP_ADDR:192.168.59.103}:9999/uaa/oauth/token_key
+    id: openid
+    serviceId: ${PREFIX:}resource
+  client:
+    tokenUri: http://${AUTHSERVER_PORT_8761_TCP_ADDR:192.168.59.103}:9999/uaa/oauth/token
+    authorizationUri: http://${AUTHSERVER_PORT_8761_TCP_ADDR:192.168.59.103}:9999/uaa/oauth/authorize
+    clientId: acme
+    clientSecret: acmesecret    
+
+    

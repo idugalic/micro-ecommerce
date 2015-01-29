@@ -7,3 +7,13 @@ eureka:
     fetchRegistry: false
   server:
     waitTimeInMsWhenSyncEmpty: 0
+    
+---
+
+spring:
+  profiles: docker
+  
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${APPLICATION_DOMAIN}:8761/eureka/
