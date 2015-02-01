@@ -17,7 +17,6 @@ todo
 ### Recommendations 
 todo
 ### Orders
-todo
 
 The implementation consists of mainly two parts, the order and the payment part. The Orders are exposed as REST resources using Spring Data RESTs capability to automatically expose Spring Data JPA repositories contained in the application. The Payment process  are implemented manually using a Spring MVC controller (PaymentController).
 
