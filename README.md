@@ -41,7 +41,7 @@ Spring Hateoas provides a generic Resource abstraction that we leverage to creat
 
 ###  API Gateway
 
-Implementatio of an API gateway that is the single entry point for all clients. The API gateway handles requests in one of two ways. Some requests are simply proxied/routed to the appropriate service. It handles other requests by fanning out to multiple services.
+Implementation of an API gateway that is the single entry point for all clients. The API gateway handles requests in one of two ways. Some requests are simply proxied/routed to the appropriate service. It handles other requests by fanning out to multiple services.
 
 http://microservices.io/patterns/apigateway.html
 
@@ -54,7 +54,7 @@ http://microservices.io/patterns/apigateway.html
 
 
 ## Running Instructions
-### Local
+### ___Local____
 - Before try to run the services, make sure you have Neo4J and MongoDB running on localhost (on default ports).
 - To run the services localy, just execute "mvn spring-boot:run" in each project subfolder. Run Authorization server project first.
 - After you run services, trigger shell scripts under script folder of each service to create sample data.
@@ -85,9 +85,9 @@ Example of usage:
 - Paste your token in 'Custom Request Header' like this: Authorization: Bearer <YOUR TOKEN>
 - Explore the API :)
 
-### Docker
+### ___Docker___
 - Before try to run the services, make sure you have Docker and Fig (optional) installed on your machine.
 - You can run all your services and databases in Docker via Fig. 'fig.yml' is provided in root folder. 
 - You can run/install all your services and databases with one command '$ fig run' from root folder.
-- Fig is not mandatory (I had some problems with 32bit version of fig on bot2docker for windows). You can run fig as Docker container '$ cdocker run -v $(pwd):/app -v /var/run/docker.sock:/var/run/docker.sock -ti dduportal/fig up -d'
+- Fig is not mandatory (I had some problems with 32bit version of fig on bot2docker for windows). You can run fig as Docker container '$ docker run -v $(pwd):/app -v /var/run/docker.sock:/var/run/docker.sock -ti dduportal/fig up -d'
 - NOTE: I am runing boot2docker for Windows. Docker is runing in virtual machine with IP of 192.168.59.103. This is externalized in Dockerfile-s!
