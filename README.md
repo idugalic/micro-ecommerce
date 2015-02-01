@@ -1,10 +1,8 @@
 # Ecommerce application
 
-Simple ecommerce application 
+Rest-full, Hipermedia-based distributed  ecommerce application.
 
-## REST based micro-services 
-
- Spring Boot based Maven projects that are standalone applications (microservices):
+## REST based micro-services with Spring Boot
 
 - Catalog(JPA-SQL product calatlog).
 - Reviews (MongoDB product reviews)
@@ -20,6 +18,8 @@ We're using Spring Data REST to expose the OrderRepository as REST resource with
 
 Spring Hateoas provides a generic Resource abstraction that we leverage to create hypermedia-driven representations. Spring Data REST also leverages this abstraction so that we can deploy ResourceProcessor implementations (e.g. PaymentorderResourceProcessor) to enrich the representations for Order instance with links to the PaymentController. Read more on that below in the Hypermedia section.
 
+![order_state.png](https://bitbucket.org/repo/L66odr/images/1347317380-order_state.png)
+![orders.png](https://bitbucket.org/repo/L66odr/images/991417990-orders.png)
 
 ## Configuration and management services:
 
