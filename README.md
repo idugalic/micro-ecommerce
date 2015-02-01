@@ -12,7 +12,16 @@ Simple ecommerce application
 - Orders (JPA)
 - API Gateway (Reactive API proxy)
 
-Configuration and management services:
+### Orders
+
+The implementation consists of mainly two parts, the order and the payment part. The Orders are exposed as REST resources using Spring Data RESTs capability to automatically expose Spring Data JPA repositories contained in the application. The Payment process  are implemented manually using a Spring MVC controller (PaymentController).
+
+We're using Spring Data REST to expose the OrderRepository as REST resource without additional effort.
+
+Spring Hateoas provides a generic Resource abstraction that we leverage to create hypermedia-driven representations. Spring Data REST also leverages this abstraction so that we can deploy ResourceProcessor implementations (e.g. PaymentorderResourceProcessor) to enrich the representations for Order instance with links to the PaymentController. Read more on that below in the Hypermedia section.
+
+
+## Configuration and management services:
 
 - Hystrix is used to monitor the availability of the remote system, so if it fails to connect 20 times in 5 seconds (by default) the circuit will open and no more attempts will be made until after a timeout.
 - Eureka is used as service registry and discovery.
