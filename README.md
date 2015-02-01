@@ -14,11 +14,20 @@ Rest-full, Hipermedia-based distributed  ecommerce application.
 
 
 ### Catalog
-todo
+
+The Catalog consists of categorized products. Products can be in one ore more categories, and category can contain one ore more products.
+Products and Categories are exposed as REST resources using Spring Data RESTs capability to automatically expose Spring Data JPA repositories contained in the application.
+
 ### Reviews 
-todo
+
+Review is entity(document) related to product by productId and to customer(user) by userName. The repository under this service is MongoDb
+Reviews are exposed as REST resources using Spring Data RESTs capability to automatically expose Spring Data Mongo repositories contained in the application.
+
 ### Recommendations 
-todo
+
+This service consists of Person and Product entities and Like relation entity that links them.
+Recommendations are exposed as REST resources using Spring Data RESTs capability to automatically expose Spring Data Neo4j(Graph) repositories contained in the application.
+
 ### Orders
 
 The implementation consists of mainly two parts, the order and the payment part. The Orders are exposed as REST resources using Spring Data RESTs capability to automatically expose Spring Data JPA repositories contained in the application. The Payment process  are implemented manually using a Spring MVC controller (PaymentController).
@@ -31,7 +40,10 @@ Spring Hateoas provides a generic Resource abstraction that we leverage to creat
 ![orders.png](https://bitbucket.org/repo/L66odr/images/691856836-orders.png)
 
 ###  API Gateway
-todo
+
+Implementatio of an API gateway that is the single entry point for all clients. The API gateway handles requests in one of two ways. Some requests are simply proxied/routed to the appropriate service. It handles other requests by fanning out to multiple services.
+
+http://microservices.io/patterns/apigateway.html
 
 ## Configuration and management services:
 
