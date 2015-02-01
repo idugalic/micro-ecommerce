@@ -86,7 +86,7 @@ Example of usage:
 - Explore the API :)
 
 ### ___Docker___
-- Before try to run the services, make sure you have Docker and Fig (optional) installed on your machine.
+- Install Docker and Fig  on your machine.
 - You can run/install all your services and databases with one command '$ fig run' from root folder.
 - Fig is not mandatory (I had some problems with 32bit version of fig on bot2docker for windows). You can run fig as Docker container '$ docker run -v $(pwd):/app -v /var/run/docker.sock:/var/run/docker.sock -ti dduportal/fig up -d'
-- NOTE: I am runing boot2docker for Windows. Docker is runing in virtual machine with IP of 192.168.59.103. This is externalized in Dockerfile-s!
+- NOTE: I am runing boot2docker for Windows. Docker is running in virtual machine with IP of 192.168.59.103.
