@@ -10,6 +10,9 @@ Rest-full, Hipermedia-based distributed  ecommerce application.
 - Orders (JPA)
 - API Gateway (Reactive API proxy)
 
+![gate2.png](https://bitbucket.org/repo/L66odr/images/3435389082-gate2.png)
+
+
 ### Catalog
 todo
 ### Reviews 
