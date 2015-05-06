@@ -52,6 +52,23 @@ http://microservices.io/patterns/apigateway.html
 - Config server is used for centralized configuration.
 - Authorization (Oauth2) server for issuing tokens.
 
+## Security
+
+Spring Cloud Security offers a set of primitives for building secure applications and services with minimum fuss. 
+A declarative model which can be heavily configured externally (or centrally) lends itself to the implementation of large systems of co-operating, remote components, usually with a central indentity management service. It is also extremely easy to use in a service platform like Cloud Foundry. 
+Building on Spring Boot and Spring Security OAuth2 we can quickly create systems that implement common patterns like single sign on, token relay and token exchange.
+
+http://projects.spring.io/spring-cloud/docs/1.0.1/spring-cloud.html#_spring_cloud_security
+
+### Client 
+
+To enable the Oauth2 SSO you should include spring cloude security in your pom and use @EnableOAuth2Sso annotation.
+
+### API Gateway
+
+To enable the Oauth2 SSO you should include spring cloude security in your pom, only in this case you need only 'token reley' functionality (don't place @EnableOAuth2Sso).
+A Token Relay is where an OAuth2 consumer acts as a Client and forwards the incoming token to outgoing resource requests. The consumer is API gateway (Resource Server) in this case.
+If your app has a Spring Cloud Zuul embedded reverse proxy (using @EnableZuulProxy) then you can ask it to forward OAuth2 access tokens downstream to the services it is proxying. 
 
 ## Running Instructions
 ### ___Local___
