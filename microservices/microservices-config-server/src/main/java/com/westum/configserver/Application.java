@@ -2,12 +2,12 @@ package com.westum.configserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.config.server.EnableConfigServer;
 
-@Configuration
-@ComponentScan
+@SpringBootApplication  
 @EnableAutoConfiguration
+@EnableConfigServer
 public class Application {
 
     public static void main(String[] args) {

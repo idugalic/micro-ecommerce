@@ -1,0 +1,24 @@
+#server.port=9999
+#server.contextPath=/uaa
+#security.user.password=password
+#security.ignored=/css/**,/js/**,/favicon.ico,/webjars/**
+#logging.level.org.springframework.security=DEBUG
+security:
+  user:
+    password: password
+    
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://idugalic@bitbucket.org/idugalic_microservices_lab/micro-ecommerce-config.git
+# While in development mode, you can configure the config server to pick up configuration files from
+# the file system
+          
+#           uri: file://Users/anilallewar/Documents/Anil Allewar/Trainings/Code Samples/Enterprise Java/Micro Services/sample-config
+
+# Defines the port where the config server is running so that rest of the services can pick up 
+# their external configurations
+server:
+  port: 8888 

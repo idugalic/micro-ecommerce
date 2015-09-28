@@ -1,42 +1,47 @@
-server:
-  port: 9000
-      
-zuul:
-  routes:
-    catalog-service:
-      path: /catalog/**
-    reviews-service:
-      path: /reviews/**
-    recommendations-service:
-      path: /recommendations/**
-    orders-service:
-      path: /orders/**
-      
-oauth2:
-  client:
-    tokenUri: http://localhost:9999/uaa/oauth/token
-    authorizationUri: http://localhost:9999/uaa/oauth/authorize
-    clientId: acme
-    clientSecret: acmesecret
-  resource:
-    jwt:
-      keyUri: http://localhost:9999/uaa/oauth/token_key
-    id: openid
-    serviceId: ${PREFIX:}resource
----
+#server:
+#  port: 9000
+#      
+#zuul:
+#  routes:
+#    catalog-service:
+#      path: /catalog/**
+#    reviews-service:
+#      path: /reviews/**
+#    recommendations-service:
+#      path: /recommendations/**
+#    orders-service:
+#      path: /orders/**
+#      
+#oauth2:
+#  client:
+#    tokenUri: http://localhost:9999/uaa/oauth/token
+#    authorizationUri: http://localhost:9999/uaa/oauth/authorize
+#    clientId: acme
+#    clientSecret: acmesecret
+#  resource:
+#    jwt:
+#      keyUri: http://localhost:9999/uaa/oauth/token_key
+#    id: openid
+#    serviceId: ${PREFIX:}resource
+#---
+#
+#spring:
+#  profiles: docker
+#  
+#oauth2:
+#  resource:
+#    jwt:
+#      keyUri: http://${AUTHSERVER_PORT_8761_TCP_ADDR:192.168.59.103}:9999/uaa/oauth/token_key
+#    id: openid
+#    serviceId: ${PREFIX:}resource
+#  client:
+#    tokenUri: http://${AUTHSERVER_PORT_8761_TCP_ADDR:192.168.59.103}:9999/uaa/oauth/token
+#    authorizationUri: http://${AUTHSERVER_PORT_8761_TCP_ADDR:192.168.59.103}:9999/uaa/oauth/authorize
+#    clientId: acme
+#    clientSecret: acmesecret    
 
-spring:
-  profiles: docker
-  
-oauth2:
-  resource:
-    jwt:
-      keyUri: http://${AUTHSERVER_PORT_8761_TCP_ADDR:192.168.59.103}:9999/uaa/oauth/token_key
-    id: openid
-    serviceId: ${PREFIX:}resource
-  client:
-    tokenUri: http://${AUTHSERVER_PORT_8761_TCP_ADDR:192.168.59.103}:9999/uaa/oauth/token
-    authorizationUri: http://${AUTHSERVER_PORT_8761_TCP_ADDR:192.168.59.103}:9999/uaa/oauth/authorize
-    clientId: acme
-    clientSecret: acmesecret    
-
+logging:
+  level:
+     org:
+       springframework:
+         security: DEBUG
