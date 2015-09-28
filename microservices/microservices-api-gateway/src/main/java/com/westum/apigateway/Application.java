@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
-import org.springframework.cloud.security.oauth2.client.ClientConfiguration;
 import org.springframework.cloud.security.oauth2.resource.EnableOAuth2Resource;
 import org.springframework.cloud.security.oauth2.sso.OAuth2SsoConfigurerAdapter;
 import org.springframework.context.annotation.ComponentScan;
@@ -45,7 +44,6 @@ import com.westum.apigateway.services.reviews.ReviewsIntegrationService;
 @EnableZuulProxy
 @EnableCircuitBreaker
 @RestController
-@Import(ClientConfiguration.class)
 @EnableHypermediaSupport(type = { HypermediaType.HAL })
 public class Application {
 

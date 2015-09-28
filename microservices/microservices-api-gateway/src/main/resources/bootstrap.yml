@@ -1,20 +1,35 @@
+#spring:
+#  application:
+#    name: api-gateway-service
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: ${vcap.services.eureka-service.credentials.host:http://127.0.0.1:8761}/eureka/
+#
+#---
+#
+#spring:
+#  profiles: docker
+#
+#eureka:
+#  instance:
+#    hostname: ${APPLICATION_DOMAIN}
+#    nonSecurePort: 9000
+#  client:
+#    serviceUrl:
+#      defaultZone: http://${EUREKA_PORT_8761_TCP_ADDR:localhost}:8761/eureka/
+      
 spring:
   application:
-    name: api-gateway-service
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: ${vcap.services.eureka-service.credentials.host:http://127.0.0.1:8761}/eureka/
-
+    name: api-gateway
+  cloud:
+    config:
+      uri: http://localhost:8888
+      
 ---
 
 spring:
   profiles: docker
-
-eureka:
-  instance:
-    hostname: ${APPLICATION_DOMAIN}
-    nonSecurePort: 9000
-  client:
-    serviceUrl:
-      defaultZone: http://${EUREKA_PORT_8761_TCP_ADDR:localhost}:8761/eureka/
+  cloud:
+     config:
+        uri: http://192.168.59.103:8888
