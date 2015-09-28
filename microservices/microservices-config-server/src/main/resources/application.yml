@@ -1,8 +1,10 @@
-#server.port=9999
-#server.contextPath=/uaa
-#security.user.password=password
-#security.ignored=/css/**,/js/**,/favicon.ico,/webjars/**
-#logging.level.org.springframework.security=DEBUG
+info:
+  build:
+    artifact: ${project.artifactId}
+    name: ${project.name}
+    description: ${project.description}
+    version: ${project.version}
+    
 security:
   user:
     password: password

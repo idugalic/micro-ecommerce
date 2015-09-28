@@ -1,42 +1,7 @@
-##spring:
-##  jpa:
-##   hibernate:
-##      ddl-auto: create-drop
 ## Info endpoint
-##info:
-##  app:
-##    name: Catalog service
-##    description: Product Catalog Microservice
-##  build:
-##    artifact: ${project.artifactId}
-##    name: ${project.name}
-##    description: ${project.description}
-##    version: ${project.version}
-##    
-##oauth2:
-##  resource:
-##    jwt:
-##      keyUri: http://localhost:9999/uaa/oauth/token_key
-##    id: openid
-##    serviceId: ${PREFIX:}resource
-##  client:
-##    tokenUri: http://localhost:9999/uaa/oauth/token
-##    authorizationUri: http://localhost:9999/uaa/oauth/authorize
-##    clientId: acme
-##    clientSecret: acmesecret    
-##---
-##
-##spring:
-##  profiles: docker
-##  
-##oauth2:
-##  resource:
-##    jwt:
-##      keyUri: http://${AUTHSERVER_PORT_8761_TCP_ADDR:192.168.59.103}:9999/uaa/oauth/token_key
-##    id: openid
-##    serviceId: ${PREFIX:}resource
-##  client:
-##    tokenUri: http://${AUTHSERVER_PORT_8761_TCP_ADDR:192.168.59.103}:9999/uaa/oauth/token
-##    authorizationUri: http://${AUTHSERVER_PORT_8761_TCP_ADDR:192.168.59.103}:9999/uaa/oauth/authorize
-##    clientId: acme
-##    clientSecret: acmesecret    
+info:
+  build:
+    artifact: ${project.artifactId}
+    name: ${project.name}
+    description: ${project.description}
+    version: ${project.version}
