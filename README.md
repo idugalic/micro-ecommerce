@@ -47,10 +47,29 @@ http://microservices.io/patterns/apigateway.html
 
 ## Configuration and management services:
 
-- Hystrix is used to monitor the availability of the remote system, so if it fails to connect 20 times in 5 seconds (by default) the circuit will open and no more attempts will be made until after a timeout.
-- Eureka is used as service registry and discovery.
-- Config server is used for centralized configuration.
-- Authorization (Oauth2) server for issuing tokens.
+### Config server
+
+The configuration service is a vital component of any microservices architecture. Based on the twelve-factor app methodology, configurations for your microservice applications should be stored in the environment and not in the project.
+
+The configuration service is essential because it handles the configurations for all of the services through a simple point-to-point service call to retrieve those configurations. The advantages of this are multi-purpose.
+
+Let's assume that we have multiple deployment environments. If we have a staging environment and a production environment, configurations for those environments will be different. A configuration service might have a dedicated Git repository for the configurations of that environment. None of the other environments will be able to access this configuration, it is available only to the configuration service running in that environment.
+
+When the configuration service starts up, it will reference the path to those configuration files and begin to serve them up to the microservices that request those configurations. Each microservice can have their configuration file configured to the specifics of the environment that it is running in. In doing this, the configuration is both externalized and centralized in one place that can be version-controlled and revised without having to restart a service to change a configuration.
+
+With management endpoints available from Spring Cloud, you can make a configuration change in the environment and signal a refresh to the discovery service that will force all consumers to fetch the new configurations.
+
+### Discovery service (Eureka)
+
+The discovery service is another vital component of our microservice architecture. The discovery service handles maintaining a list of service instances that are available for work within a cluster (used as service registry and discovery).
+
+### Authorization (Oauth2) server
+
+For issuing tokens and authorize requests.
+
+### Hystrix 
+
+It is used to monitor the availability of the remote system, so if it fails to connect 20 times in 5 seconds (by default) the circuit will open and no more attempts will be made until after a timeout.
 
 ## Security
 
@@ -78,7 +97,7 @@ If your app has a Spring Cloud Zuul embedded reverse proxy (using @EnableZuulPro
 
 #### Usage
 
-- Get a token: $ curl -X POST -vu acme:acmesecret http://localhost:9999/uaa/oauth/token -H "Accept: application/json" -d "password=idugalic&username=idugalic&grant_type=password&scope=openid&client_secret=acmesecret&client_id=acme"
+- Get a token: $ curl -X POST -vu acme:acmesecret http://localhost:9999/uaa/oauth/token -H "Accept: application/json" -d "password=idugalic&username=idugalic&grant_type=password&client_secret=acmesecret&client_id=acme"
 - Catalog service: $ curl http://localhost:8080/ -H "Authorization: Bearer <YOUR TOKEN>"
 - Reviews service: $ curl http://localhost:8081/ -H "Authorization: Bearer <YOUR TOKEN>"
 - Recommendations service: $ curl http://localhost:8082/ -H "Authorization: Bearer <YOUR TOKEN>"
