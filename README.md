@@ -132,3 +132,13 @@ Example of usage:
 - You can run/install all your services and databases with one command '$ fig run' from root folder.
 - Fig is not mandatory (I had some problems with 32bit version of fig on bot2docker for windows). You can run fig as Docker container '$ docker run -v $(pwd):/app -v /var/run/docker.sock:/var/run/docker.sock -ti dduportal/fig up -d'
 - NOTE: I am runing boot2docker for Windows. Docker is running in virtual machine with IP of 192.168.59.103.
+
+## Roadmap
+
+- Create documentation. Use spring rest doc project. Awoid Swager
+- Create end to end tests.
+- create better metrics.
+- Use docker maven plugin. Remove fig and use docker compose.
+- Explore event driven microservices. CQRS. Eventsourcing. Eventstore.
+- Consider reactjs on the front end. Explore other libraries and frameworks. 
+- 
