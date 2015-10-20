@@ -73,7 +73,9 @@ For issuing tokens and authorize requests.
 
 ### Hystrix 
 
-It is used to monitor the availability of the remote system
+Netflix has created a library called Hystrix that implements the circuit breaker pattern.
+
+A service failure in the lower level of services can cause cascading failure all the way up to the user. When calls to a particular service reach a certain threshold (20 failures in 5 seconds is the default in Hystrix), the circuit opens and the call is not made. In cases of error and an open circuit a fallback can be provided by the developer.
 
 ## Security
 
