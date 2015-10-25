@@ -1,9 +1,8 @@
 ---
 applications:
-- name: api-gateway
+- name: authserver
   memory: 1024M
-  instances: 1
-  host: api-gateway-idugalic
+  host: microservices-authserver-idugalic
   domain: cfapps.io
   services:
   - eureka
