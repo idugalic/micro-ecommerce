@@ -1,12 +1,12 @@
 ---
 applications:
-- name: ms-reviews-service
-  memory: 512M
+- name: reviews
+  memory: 1024M
   instances: 1
-  path: build/libs/reviews-0.0.1-SNAPSHOT.jar
-  env:
-    SPRING_PROFILES_ACTIVE: cloud
+  host: reviews-idugalic
+  domain: cfapps.io
   services:
-  - reviews-db
-  - service-registry
-
+  - eureka
+  - config-server
+  - reviews-dba
+  

@@ -12,7 +12,6 @@ import org.springframework.cloud.security.oauth2.resource.EnableOAuth2Resource;
 import org.springframework.cloud.security.oauth2.sso.OAuth2SsoConfigurerAdapter;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.UriTemplate;
 import org.springframework.hateoas.config.EnableHypermediaSupport;
@@ -29,13 +28,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.async.DeferredResult;
 
-import rx.Observable;
-import rx.Observer;
-
 import com.westum.apigateway.models.ProductDetails;
 import com.westum.apigateway.services.catalog.CatalogIntegrationService;
 import com.westum.apigateway.services.recommendations.RecommendationsIntegrationService;
 import com.westum.apigateway.services.reviews.ReviewsIntegrationService;
+
+import rx.Observable;
+import rx.Observer;
 
 @Configuration
 @ComponentScan

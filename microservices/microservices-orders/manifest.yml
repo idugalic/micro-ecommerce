@@ -1,13 +1,12 @@
 ---
 applications:
-- name: recommendations
+- name: orders
   memory: 1024M
   instances: 1
-  host: recommendations-idugalic
+  host: orders-idugalic
   domain: cfapps.io
   services:
   - eureka
   - config-server
-  - recommendations-dba
   
 
