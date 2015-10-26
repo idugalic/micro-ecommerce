@@ -4,8 +4,4 @@ info:
     name: ${project.name}
     description: ${project.description}
     version: ${project.version}
-logging:
-  level:
-     org:
-       springframework:
-         security: ERROR
+

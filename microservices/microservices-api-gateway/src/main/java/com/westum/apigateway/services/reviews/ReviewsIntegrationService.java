@@ -7,6 +7,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.hateoas.PagedResources;
 import org.springframework.hateoas.hal.Jackson2HalModule;
 import org.springframework.http.HttpEntity;
@@ -29,6 +31,8 @@ import com.netflix.hystrix.contrib.javanica.command.ObservableResult;
 public class ReviewsIntegrationService {
 
 	@Autowired
+	@Qualifier("loadBalancedRestTemplate")
+    @LoadBalanced
 	RestTemplate restTemplate;
 
 	@HystrixCommand(fallbackMethod = "stubReviews")
