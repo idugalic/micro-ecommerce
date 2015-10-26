@@ -74,7 +74,7 @@ public class Application {
         @Override
         public void configure(HttpSecurity http) throws Exception {
             http.logout().and().antMatcher("/**").authorizeRequests()
-                    .antMatchers("/index.html", "/home.html", "/", "/login", "/beans").permitAll()
+                    .antMatchers("/browser/**","/index.html", "/home.html", "/", "/login", "/beans").permitAll()
                     .antMatchers(HttpMethod.GET, "/recommendations/**","/reviews/**","/product/**","/catalog/**","/orders/**").permitAll()
                     .anyRequest().authenticated().and().csrf()
                     .csrfTokenRepository(csrfTokenRepository()).and()
