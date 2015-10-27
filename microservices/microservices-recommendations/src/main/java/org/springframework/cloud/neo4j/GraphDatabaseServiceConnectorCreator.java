@@ -8,17 +8,9 @@ import org.springframework.data.neo4j.rest.SpringRestGraphDatabase;
 public class GraphDatabaseServiceConnectorCreator extends AbstractServiceConnectorCreator<GraphDatabaseService, GraphDatabaseServiceInfo> {
     @Override
     public GraphDatabaseService create(GraphDatabaseServiceInfo neo4JServiceInfo, ServiceConnectorConfig serviceConnectorConfig) {
-        return new SpringRestGraphDatabase(createUri(neo4JServiceInfo),
-                neo4JServiceInfo.getUsername(),
-                neo4JServiceInfo.getPassword());
+        return new SpringRestGraphDatabase(neo4JServiceInfo.getNeo4jUri(),
+                neo4JServiceInfo.getNeo4jUsername(),
+                neo4JServiceInfo.getNeo4jPassword());
     }
 
-    private String createUri(GraphDatabaseServiceInfo neo4JServiceInfo) {
-        return new StringBuilder("http://")
-                .append(neo4JServiceInfo.getHost())
-                .append(":")
-                .append(neo4JServiceInfo.getHttpPort())
-                .append("/db/data")
-                .toString();
-    }
 }

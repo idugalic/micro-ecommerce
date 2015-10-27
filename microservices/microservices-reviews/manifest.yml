@@ -8,5 +8,5 @@ applications:
   services:
   - eureka
   - config-server
-  - reviews-dba
+  - review-db
   

@@ -1,43 +1,25 @@
 package com.westum.recommendations;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.security.oauth2.resource.EnableOAuth2Resource;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.neo4j.config.EnableNeo4jRepositories;
-import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
-
-import com.westum.recommendations.repositories.LikesRepository;
-import com.westum.recommendations.repositories.PersonRepository;
-import com.westum.recommendations.repositories.ProductRepository;
 
 @SpringBootApplication
 @EnableNeo4jRepositories(basePackages = "com.westum.recommendations.repositories")
 @EnableDiscoveryClient
-public class Application extends RepositoryRestMvcConfiguration implements CommandLineRunner {
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class Application{
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
-
-    @Autowired
-    ProductRepository movieRepository;
-    @Autowired
-    PersonRepository personRepository;
-    @Autowired
-    LikesRepository likesRepository;
-
-    @Override
-    public void run(String... strings) throws Exception {
-        movieRepository.deleteAll();
-        personRepository.deleteAll();
-        likesRepository.deleteAll();
-    }
+   
     @Configuration
 	@EnableOAuth2Resource
 	static class ResourceServer extends ResourceServerConfigurerAdapter {

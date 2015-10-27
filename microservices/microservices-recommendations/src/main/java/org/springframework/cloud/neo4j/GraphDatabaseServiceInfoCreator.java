@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class GraphDatabaseServiceInfoCreator extends CloudFoundryServiceInfoCreator<GraphDatabaseServiceInfo> {
     public GraphDatabaseServiceInfoCreator() {
-        super(new Tags("pivotal","neo4j"));
+        super(new Tags("neo4j"),"neo4j");
     }
 
     @Override
@@ -16,12 +16,11 @@ public class GraphDatabaseServiceInfoCreator extends CloudFoundryServiceInfoCrea
         Map<String, Object> credentials = (Map<String, Object>) serviceData.get("credentials");
 
         String id = (String) serviceData.get("name");
-        String host = getStringFromCredentials(credentials, "host");
-        String username = getStringFromCredentials(credentials, "username");
-        String password = getStringFromCredentials(credentials, "password");
-        int httpPort = Integer.valueOf(getStringFromCredentials(credentials, "http_port")).intValue();
-        int httpsPort =Integer.valueOf(getStringFromCredentials(credentials, "https_port")).intValue();
+        String neo4jUri = getStringFromCredentials(credentials, "neo4jUri");
+        String neo4jPassword = getStringFromCredentials(credentials, "neo4jPassword");
+        String neo4jUsername = getStringFromCredentials(credentials, "neo4jUsername");
+        
 
-        return new GraphDatabaseServiceInfo(id, host, username, password, httpPort, httpsPort);
+        return new GraphDatabaseServiceInfo(id, neo4jUsername, neo4jPassword, neo4jUri);
     }
 }

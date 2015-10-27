@@ -8,6 +8,6 @@ applications:
   services:
   - eureka
   - config-server
-  - recommendations-dba
+  - recommendations-db
   
 
