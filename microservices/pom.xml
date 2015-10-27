@@ -29,8 +29,7 @@
 	</modules>
 	
 	<properties>
-		<spring-cloud.version>1.0.0.RELEASE</spring-cloud.version>
-		
+		<spring-cloud.version>1.0.1.RELEASE</spring-cloud.version>
 	</properties>
 	
 	<dependencyManagement>

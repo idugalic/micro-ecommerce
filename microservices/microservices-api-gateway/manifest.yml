@@ -1,10 +1,10 @@
 ---
 applications:
-- name: ms-api-gateway-service
-  memory: 512M
+- name: api-gateway
+  memory: 1024M
   instances: 1
-  path: target/microservices-api-gateway-0.0.1-SNAPSHOT.jar
-  env:
-      SPRING_PROFILES_ACTIVE: cloud
+  host: api-gateway-idugalic
+  domain: cfapps.io
   services:
-  - eureka-service
+  - eureka
+  - config-server

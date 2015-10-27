@@ -4,43 +4,27 @@ import org.springframework.cloud.service.BaseServiceInfo;
 
 public class GraphDatabaseServiceInfo extends BaseServiceInfo {
 
-    private final int httpPort;
-    private final int httpsPort;
-    private final String host;
-    private final String username;
-    private final String password;
+    private final String neo4jUri;
+    private final String neo4jUsername;
+    private final String neo4jPassword;
 
-    public GraphDatabaseServiceInfo(String id, String host, String username, String password, int httpPort, int httpsPort) {
+    public GraphDatabaseServiceInfo(String id, String neo4jUsername, String neo4jPassword, String neo4jUri) {
         super(id);
-        this.host = host;
-        this.username = username;
-        this.password = password;
-        this.httpPort = httpPort;
-        this.httpsPort = httpsPort;
+        this.neo4jUsername = neo4jUsername;
+        this.neo4jPassword = neo4jPassword;
+        this.neo4jUri = neo4jUri;
     }
-
     @ServiceProperty
-    public String getHost() {
-        return host;
-    }
-
+	public String getNeo4jUri() {
+		return neo4jUri;
+	}
     @ServiceProperty
-    public String getUsername() {
-        return username;
-    }
-
+	public String getNeo4jUsername() {
+		return neo4jUsername;
+	}
     @ServiceProperty
-    public String getPassword() {
-        return password;
-    }
+	public String getNeo4jPassword() {
+		return neo4jPassword;
+	}
 
-    @ServiceProperty
-    public int getHttpPort() {
-        return httpPort;
-    }
-
-    @ServiceProperty
-    public int getHttpsPort() {
-        return httpsPort;
-    }
-}
+   }

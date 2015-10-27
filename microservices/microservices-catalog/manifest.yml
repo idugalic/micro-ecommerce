@@ -1,13 +1,12 @@
 ---
 applications:
-- name: ms-catalog-service
-  memory: 512M
-  timeout: 90
+- name: catalog
+  memory: 1024M
   instances: 1
-  path: build/libs/catalog-0.0.1-SNAPSHOT.jar
-  env:
-    SPRING_PROFILES_ACTIVE: cloud
+  host: catalog-idugalic
+  domain: cfapps.io
   services:
-  - catalog-db
-  - service-registry
+  - eureka
+  - config-server
+  
 

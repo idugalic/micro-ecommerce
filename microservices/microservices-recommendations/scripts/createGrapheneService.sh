@@ -1,5 +1,2 @@
 #!/bin/bash
-URI="your graphenedb host"
-USERNAME="your graphenedb username"
-PASSWORD="your graphenedb password"
-cf cups recommendations-dba -p '{"neo4jUri":"${URI}","neo4jUsername":"${USERNAME}","neo4jPassword":"${PASSWORD}"}'
+cf cups recommendations-db -p '{"neo4jUri":"http://idugalicmicroservices.sb04.stations.graphenedb.com:24789/db/data/","neo4jUsername":"Idugalic_microservices","neo4jPassword":"mlzkAME4f85viYEwgSts"}'

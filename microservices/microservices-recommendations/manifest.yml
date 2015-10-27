@@ -1,12 +1,13 @@
 ---
 applications:
-- name: ms-recommendations-service
-  memory: 512M
+- name: recommendations
+  memory: 1024M
   instances: 1
-  path: build/libs/recommendations-0.0.1-SNAPSHOT.jar
-  env:
-    SPRING_PROFILES_ACTIVE: cloud
+  host: recommendations-idugalic
+  domain: cfapps.io
   services:
+  - eureka
+  - config-server
   - recommendations-db
-  - service-registry
+  
 

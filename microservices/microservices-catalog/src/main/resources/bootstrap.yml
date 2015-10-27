@@ -1,25 +1,6 @@
-#spring:
-#  application:
-#    name: catalog-service
-#  
-#eureka:
-#  client:
-#    serviceUrl:
-#     defaultZone: ${vcap.services.eureka-service.credentials.host:http://127.0.0.1:8761}/eureka/
-#
-#---
-#
-#spring:
-# profiles: docker
-#
-#eureka:
-#  instance:
-#    hostname: ${APPLICATION_DOMAIN}
-#    nonSecurePort: 8080
-#  client:
-#    serviceUrl:
-#     defaultZone: http://${EUREKA_PORT_8761_TCP_ADDR:localhost}:8761/eureka/
-#########################################
+server:
+  port: 8080
+  
 spring:
   application:
   
@@ -31,8 +12,9 @@ spring:
       
 # Define the URL from where this service would pick up it's external configuration. Note that it is
 # pointing to the config-server aplication         
-      uri: http://localhost:8888
-      
+      uri: ${vcap.services.config-server.credentials.uri:http://localhost:8888}
+
+   
 ---
 
 spring:

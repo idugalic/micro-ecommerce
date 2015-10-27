@@ -10,10 +10,6 @@ import org.springframework.data.neo4j.rest.SpringRestGraphDatabase;
 @Configuration
 @Profile("default")
 public class LocalConfig extends Neo4jConfiguration {
-    public LocalConfig() {
-        setBasePackage("com.westum.recommendations.model");
-    }
-
     @Bean
     public GraphDatabaseService graphDatabaseService() {
         return new SpringRestGraphDatabase("http://localhost:7474/db/data/");

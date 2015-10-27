@@ -1,6 +1,7 @@
 ---
 applications:
-- name: ms-hystrix-dashboard
-  memory: 512M
+- name: hystrix
+  memory: 1024M
   instances: 1
-  path: target/microservices-hystrix-dashboard-0.0.1-SNAPSHOT.jar
+  host: hystrix-idugalic
+  domain: cfapps.io
