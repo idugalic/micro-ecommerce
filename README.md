@@ -2,6 +2,10 @@
 
 Rest-full, Hipermedia-based distributed  ecommerce application.
 
+# Links to detailed documentation
+* [WIKI](https://bitbucket.org/idugalic_microservices_lab/micro-ecommerce/wiki/browse/)
+* [Articles and Books](https://bitbucket.org/idugalic_microservices_lab/micro-ecommerce/src/7081fd1bc66e1e662fb50ed33b4d3944f60ef4d9/docs/?at=master)
+
 ## REST based micro-services with Spring Boot
 
 - Catalog(JPA-SQL product calatlog).
@@ -141,4 +145,4 @@ Example of usage:
 - Use docker maven plugin. Remove fig and use docker compose.
 - Explore event driven microservices. CQRS. Eventsourcing. Eventstore.
 - Consider reactjs on the front end. Explore other libraries and frameworks. 
-- 
+-
