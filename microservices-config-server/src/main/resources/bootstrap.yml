@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: config-server
+  
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://bitbucket.org/idugalic_microservices_lab/micro-ecommerce-config.git
+    
+security:
+  user:
+    password: password
+    
+server:
+  port: 8888 
