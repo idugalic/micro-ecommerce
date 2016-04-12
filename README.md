@@ -2,10 +2,6 @@
 
 Rest-full, Hipermedia-based distributed  ecommerce application.
 
-# Links to detailed documentation
-* [WIKI](https://bitbucket.org/idugalic_microservices_lab/micro-ecommerce/wiki/browse/)
-* [Articles and Books](https://bitbucket.org/idugalic_microservices_lab/micro-ecommerce/src/7081fd1bc66e1e662fb50ed33b4d3944f60ef4d9/docs/?at=master)
-
 ## REST based micro-services with Spring Boot
 
 - Catalog(JPA-SQL product calatlog).
@@ -14,7 +10,6 @@ Rest-full, Hipermedia-based distributed  ecommerce application.
 - Orders (JPA)
 - API Gateway (Reactive API proxy)
 
-![gate2.png](https://bitbucket.org/repo/L66odr/images/3435389082-gate2.png)
 
 
 ### Catalog
@@ -40,8 +35,7 @@ We're using Spring Data REST to expose the OrderRepository as REST resource with
 
 Spring Hateoas provides a generic Resource abstraction that we leverage to create hypermedia-driven representations. Spring Data REST also leverages this abstraction so that we can deploy ResourceProcessor implementations (e.g. PaymentorderResourceProcessor) to enrich the representations for Order instance with links to the PaymentController.
 
-![order_state.png](https://bitbucket.org/repo/L66odr/images/1347317380-order_state.png)
-![orders.png](https://bitbucket.org/repo/L66odr/images/691856836-orders.png)
+
 
 ###  API Gateway
 
