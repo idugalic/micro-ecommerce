@@ -22,7 +22,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<start-class>com.westum.hystrixdashboard.Application</start-class>
+		<start-class>com.idugalic.hystrixdashboard.Application</start-class>
 		<java.version>1.8</java.version>
 	</properties>
 

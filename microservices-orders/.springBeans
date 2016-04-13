@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beansProjectDescription>
 	<version>1</version>
-	<pluginVersion><![CDATA[3.5.1.201404300732-RELEASE]]></pluginVersion>
+	<pluginVersion><![CDATA[3.7.2.201511260958-RELEASE]]></pluginVersion>
 	<configSuffixes>
 		<configSuffix><![CDATA[xml]]></configSuffix>
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>java:com.westum.orders.Application</config>
+		<config>java:com.idugalic.orders.Application</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

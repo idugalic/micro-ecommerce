@@ -6,7 +6,7 @@ spring:
     config:
       server:
         git:
-          uri: https://bitbucket.org/idugalic_microservices_lab/micro-ecommerce-config.git
+          uri: https://github.com/idugalic/micro-ecommerce-config.git
     
 security:
   user:
