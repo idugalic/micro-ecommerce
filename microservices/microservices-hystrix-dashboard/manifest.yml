@@ -1,0 +1,7 @@
+---
+applications:
+- name: hystrix
+  memory: 1024M
+  instances: 1
+  host: hystrix-idugalic
+  domain: cfapps.io

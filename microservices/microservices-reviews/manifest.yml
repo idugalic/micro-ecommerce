@@ -1,0 +1,12 @@
+---
+applications:
+- name: reviews
+  memory: 1024M
+  instances: 1
+  host: reviews-idugalic
+  domain: cfapps.io
+  services:
+  - eureka
+  - config-server
+  - reviews-db
+  

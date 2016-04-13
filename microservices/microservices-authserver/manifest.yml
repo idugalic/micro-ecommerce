@@ -1,0 +1,9 @@
+---
+applications:
+- name: authserver
+  memory: 1024M
+  host: microservices-authserver-idugalic
+  domain: cfapps.io
+  services:
+  - eureka
+  - config-server

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>microservices-eureka</artifactId>
+	<name>microservices-eureka</name>
+	<description>Eureka Service Registry</description>
+
+	<parent>
+		<groupId>com.westum</groupId>
+		<artifactId>microservices-ecommerce-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka-server</artifactId>
+        </dependency>
+        <dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-config-client</artifactId>
+		</dependency>
+        <dependency>
+    <groupId>com.sun.jersey</groupId>
+    <artifactId>jersey-json</artifactId>
+    <version>1.13</version>
+</dependency>
+	</dependencies>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<start-class>com.westum.eureka.Application</start-class>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- TODO: shouldn't be required here, defined in spring-cloud-starters pom, but ignored -->
+                <configuration>
+                    <requiresUnpack>
+                        <dependency>
+                            <groupId>com.netflix.eureka</groupId>
+                            <artifactId>eureka-core</artifactId>
+                        </dependency>
+                        <dependency>
+                            <groupId>com.netflix.eureka</groupId>
+                            <artifactId>eureka-client</artifactId>
+                        </dependency>
+                    </requiresUnpack>
+                </configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

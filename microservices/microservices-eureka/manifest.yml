@@ -1,0 +1,6 @@
+---
+applications:
+- name: eureka
+  memory: 1024M
+  host: eureka-idugalic
+  domain: cfapps.io

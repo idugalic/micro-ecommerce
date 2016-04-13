@@ -35,8 +35,7 @@ We're using Spring Data REST to expose the OrderRepository as REST resource with
 
 Spring Hateoas provides a generic Resource abstraction that we leverage to create hypermedia-driven representations. Spring Data REST also leverages this abstraction so that we can deploy ResourceProcessor implementations (e.g. PaymentorderResourceProcessor) to enrich the representations for Order instance with links to the PaymentController.
 
-![order_state.png](https://bitbucket.org/repo/L66odr/images/1347317380-order_state.png)
-![orders.png](https://bitbucket.org/repo/L66odr/images/691856836-orders.png)
+
 
 ###  API Gateway
 
@@ -58,9 +57,13 @@ When the configuration service starts up, it will reference the path to those co
 
 With management endpoints available from Spring Cloud, you can make a configuration change in the environment and signal a refresh to the discovery service that will force all consumers to fetch the new configurations.
 
-### Discovery service (Eureka)
+### client side Discovery service (Eureka)
 
-The discovery service is another vital component of our microservice architecture. The discovery service handles maintaining a list of service instances that are available for work within a cluster (used as service registry and discovery).
+When using client-side discovery, the client is responsible for determining the network locations of available service instances and load balancing requests across them. The client queries a service registry, which is a database of available service instances. The client then uses a load balancing algorithm to select one of the available service instances and makes a request.
+
+The client-side discovery pattern has a variety of benefits and drawbacks. This pattern is relatively straightforward and, except for the service registry, there are no other moving parts. Also, since the client knows about the available services instances it can make intelligent, application-specific load balancing decisions such as using hashing consistently. One significant drawback of this pattern is that it couples the client to the service registry. You must implement client-side service discovery logic for each programming language and framework used by your service clients
+
+Netflix Eureka is a service registry. It provides a REST API for service instance registration management and for querying available instances. Netflix Ribbon is an IPC client that works with Eureka to load balance requests across the available service instances.
 
 ### Authorization (Oauth2) server
 
@@ -68,7 +71,9 @@ For issuing tokens and authorize requests.
 
 ### Hystrix 
 
-It is used to monitor the availability of the remote system, so if it fails to connect 20 times in 5 seconds (by default) the circuit will open and no more attempts will be made until after a timeout.
+Netflix has created a library called Hystrix that implements the circuit breaker pattern.
+
+A service failure in the lower level of services can cause cascading failure all the way up to the user. When calls to a particular service reach a certain threshold (20 failures in 5 seconds is the default in Hystrix), the circuit opens and the call is not made. In cases of error and an open circuit a fallback can be provided by the developer.
 
 ## Security
 
@@ -125,3 +130,13 @@ Example of usage:
 - You can run/install all your services and databases with one command '$ fig run' from root folder.
 - Fig is not mandatory (I had some problems with 32bit version of fig on bot2docker for windows). You can run fig as Docker container '$ docker run -v $(pwd):/app -v /var/run/docker.sock:/var/run/docker.sock -ti dduportal/fig up -d'
 - NOTE: I am runing boot2docker for Windows. Docker is running in virtual machine with IP of 192.168.59.103.
+
+## Roadmap
+
+- Create documentation. Use spring rest doc project. Awoid Swager
+- Create end to end tests.
+- create better metrics.
+- Use docker maven plugin. Remove fig and use docker compose.
+- Explore event driven microservices. CQRS. Eventsourcing. Eventstore.
+- Consider reactjs on the front end. Explore other libraries and frameworks. 
+-
