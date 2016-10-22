@@ -86,7 +86,7 @@ Building on Spring Boot and Spring Security OAuth2 we can quickly create systems
 ## Running Instructions
 ### ___Local___
 - Before try to run the services, make sure you have Neo4J and MongoDB running on localhost (on default ports).
-- To run the services localy, just execute "mvn spring-boot:run" in each project subfolder. Run Configuration server project first, then Authorizatins service ...
+- To run the services localy, just execute "mvn spring-boot:run" in each project subfolder. Run 'Configuration server' project first, then 'Authorization' service ...
 - After you run services, trigger shell scripts under script folder of each service to create sample data.
 
 #### Usage
