@@ -4,22 +4,21 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Review {
-    private String productId;
-    private String userName;
-    private String name;
-    private String review;
-    private int rating;
+	private String productId;
+	private String userName;
+	private String name;
+	private String review;
+	private int rating;
 
+	public String getUserName() {
+		return userName;
+	}
 
-    public String getUserName() {
-        return userName;
-    }
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getProductId() {
+	public String getProductId() {
 		return productId;
 	}
 
@@ -36,18 +35,18 @@ public class Review {
 	}
 
 	public String getReview() {
-        return review;
-    }
+		return review;
+	}
 
-    public void setReview(String review) {
-        this.review = review;
-    }
+	public void setReview(String review) {
+		this.review = review;
+	}
 
-    public int getRating() {
-        return rating;
-    }
+	public int getRating() {
+		return rating;
+	}
 
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
 }

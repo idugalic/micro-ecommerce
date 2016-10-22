@@ -4,7 +4,6 @@ import java.util.Set;
 
 import com.idugalic.orders.order.domain.Order;
 
-
 /**
  * Exposes the work currently in progress.
  * 

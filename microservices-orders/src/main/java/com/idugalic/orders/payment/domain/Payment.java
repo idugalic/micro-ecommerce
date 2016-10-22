@@ -11,9 +11,6 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-
-
-
 import javax.persistence.Version;
 
 import org.hibernate.annotations.Type;
@@ -22,14 +19,13 @@ import org.springframework.util.Assert;
 
 import com.idugalic.orders.order.domain.Order;
 
-
 /**
  * Baseclass for payment implementations.
  * 
  */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Payment{
+public abstract class Payment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,12 +35,12 @@ public abstract class Payment{
 	@Version
 	@Column(name = "version")
 	private Integer version;
-	
-	@JoinColumn(name = "rborder")//
-	@OneToOne(cascade = CascadeType.MERGE)//
+
+	@JoinColumn(name = "rborder") //
+	@OneToOne(cascade = CascadeType.MERGE) //
 	private Order order;
 
-	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")//
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime") //
 	private DateTime paymentDate;
 
 	public Payment() {
@@ -54,7 +50,8 @@ public abstract class Payment{
 	/**
 	 * Creates a new {@link Payment} referring to the given {@link Order}.
 	 * 
-	 * @param order must not be {@literal null}.
+	 * @param order
+	 *            must not be {@literal null}.
 	 */
 	public Payment(Order order) {
 
@@ -76,33 +73,37 @@ public abstract class Payment{
 	 * A receipt for an {@link Order} and a payment date.
 	 * 
 	 */
-	
+
 	public static class Receipt {
 
-		private  Order order;
-		private  DateTime date;
+		private Order order;
+		private DateTime date;
+
 		public Receipt(Order order, DateTime date) {
 			super();
 			this.order = order;
 			this.date = date;
 		}
+
 		public Receipt() {
 			super();
 		}
+
 		public Order getOrder() {
 			return order;
 		}
+
 		public void setOrder(Order order) {
 			this.order = order;
 		}
+
 		public DateTime getDate() {
 			return date;
 		}
+
 		public void setDate(DateTime date) {
 			this.date = date;
 		}
-		
-		
-		
+
 	}
 }

@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonUnwrapped;
  */
 @Entity
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.NONE)
-public class CreditCard{
+public class CreditCard {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,19 +31,16 @@ public class CreditCard{
 	@Version
 	@Column(name = "version")
 	private Integer version;
-	
+
 	@JsonUnwrapped
 	private CreditCardNumber number;
 
-
-	
 	private String cardHolderName;
-	
+
 	private Months expiryMonth;
 	private Years expiryYear;
 
-	public CreditCard(CreditCardNumber number, String cardHolderName,
-			Months expiryMonth, Years expiryYear) {
+	public CreditCard(CreditCardNumber number, String cardHolderName, Months expiryMonth, Years expiryYear) {
 		super();
 		this.number = number;
 		this.cardHolderName = cardHolderName;
@@ -122,6 +119,5 @@ public class CreditCard{
 	public void setCardHolderName(String cardHolderName) {
 		this.cardHolderName = cardHolderName;
 	}
-	
-	
+
 }

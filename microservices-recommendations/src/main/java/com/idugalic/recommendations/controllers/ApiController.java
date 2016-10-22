@@ -20,26 +20,27 @@ import com.idugalic.recommendations.repositories.ProductRepository;
 @ExposesResourceFor(Likes.class)
 public class ApiController {
 
-    @Autowired
-    ProductRepository productRepository;
-    @Autowired
-    PersonRepository personRepository;
-    @Autowired
-    LikesRepository likesRepository;
+	@Autowired
+	ProductRepository productRepository;
+	@Autowired
+	PersonRepository personRepository;
+	@Autowired
+	LikesRepository likesRepository;
 
-    //This controller is constructed for this method only. Enables users to create likes much easier.
-    @RequestMapping(value = "/recommendations/{userName}/likes/{productId}", method = RequestMethod.POST)
-    public ResponseEntity<Likes> createPersonProductLink(@PathVariable String userName,
-                                                       @PathVariable String productId) {
-        Person person = personRepository.findByUserName(userName);
-        Product product = productRepository.findByProductId(productId);
+	// This controller is constructed for this method only. Enables users to
+	// create likes much easier.
+	@RequestMapping(value = "/recommendations/{userName}/likes/{productId}", method = RequestMethod.POST)
+	public ResponseEntity<Likes> createPersonProductLink(@PathVariable String userName,
+			@PathVariable String productId) {
+		Person person = personRepository.findByUserName(userName);
+		Product product = productRepository.findByProductId(productId);
 
-        Likes likes = new Likes();
-        likes.setPerson(person);
-        likes.setProduct(product);
-        likesRepository.save(likes);
+		Likes likes = new Likes();
+		likes.setPerson(person);
+		likes.setProduct(product);
+		likesRepository.save(likes);
 
-        return new ResponseEntity<>(likes, HttpStatus.CREATED);
-    }
+		return new ResponseEntity<>(likes, HttpStatus.CREATED);
+	}
 
 }

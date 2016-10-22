@@ -1,11 +1,11 @@
 package com.idugalic.orders.order.domain;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Version;
-
 
 @Entity
 public class Item {
@@ -45,7 +45,7 @@ public class Item {
 	public Item(String name, MonetaryAmount price) {
 		this.name = name;
 		this.price = price;
-		}
+	}
 
 	public String getName() {
 		return name;
@@ -70,6 +70,5 @@ public class Item {
 	public void setPrice(MonetaryAmount price) {
 		this.price = price;
 	}
-	
-	
+
 }

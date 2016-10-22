@@ -1,6 +1,5 @@
 package com.idugalic.orders.payment.event;
 
-
 import org.springframework.context.ApplicationEvent;
 
 /**
@@ -15,8 +14,10 @@ public class OrderPaidEvent extends ApplicationEvent {
 	/**
 	 * Creates a new {@link OrderPaidEvent}
 	 * 
-	 * @param orderId the id of the order that just has been payed
-	 * @param source must not be {@literal null}.
+	 * @param orderId
+	 *            the id of the order that just has been payed
+	 * @param source
+	 *            must not be {@literal null}.
 	 */
 	public OrderPaidEvent(long orderId, Object source) {
 
@@ -27,5 +28,5 @@ public class OrderPaidEvent extends ApplicationEvent {
 	public long getOrderId() {
 		return orderId;
 	}
-	
+
 }

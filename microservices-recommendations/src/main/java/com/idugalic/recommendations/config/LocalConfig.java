@@ -11,11 +11,12 @@ import org.springframework.data.neo4j.rest.SpringRestGraphDatabase;
 @Profile("default")
 public class LocalConfig extends Neo4jConfiguration {
 	public LocalConfig() {
-        setBasePackage("com.idugalic.recommendations.model");
-    }
-    @Bean
-    public GraphDatabaseService graphDatabaseService() {
-        return new SpringRestGraphDatabase("http://localhost:7474/db/data/");
-    }
+		setBasePackage("com.idugalic.recommendations.model");
+	}
+
+	@Bean
+	public GraphDatabaseService graphDatabaseService() {
+		return new SpringRestGraphDatabase("http://localhost:7474/db/data/");
+	}
 
 }

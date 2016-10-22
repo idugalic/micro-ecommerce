@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.idugalic.orders.engine.InProgressAware;
 import com.idugalic.orders.order.domain.Order;
 
-
 /**
- * Custom controller to show how to expose a custom resource into the root resource exposed by Spring Data REST.
+ * Custom controller to show how to expose a custom resource into the root
+ * resource exposed by Spring Data REST.
  * 
  */
 @Controller
@@ -28,7 +28,7 @@ class EngineController implements ResourceProcessor<RepositoryLinksResource> {
 	public static final String ENGINE_REL = "engine";
 
 	private InProgressAware processor;
-	
+
 	@Autowired
 	public EngineController(InProgressAware processor) {
 		this.processor = processor;
@@ -49,7 +49,8 @@ class EngineController implements ResourceProcessor<RepositoryLinksResource> {
 	}
 
 	/**
-	 * Exposes the {@link EngineController} to the root resource exposed by Spring Data REST.
+	 * Exposes the {@link EngineController} to the root resource exposed by
+	 * Spring Data REST.
 	 * 
 	 * @see org.springframework.hateoas.ResourceProcessor#process(org.springframework.hateoas.ResourceSupport)
 	 */

@@ -10,13 +10,15 @@ import com.idugalic.orders.payment.domain.CreditCardNumber;
  * Repository to access {@link CreditCard} instances.
  * 
  */
-@RepositoryRestResource(exported=false)
+@RepositoryRestResource(exported = false)
 public interface CreditCardRepository extends CrudRepository<CreditCard, Long> {
 
 	/**
-	 * Returns the {@link CreditCard} assicaiated with the given {@link CreditCardNumber}.
+	 * Returns the {@link CreditCard} assicaiated with the given
+	 * {@link CreditCardNumber}.
 	 * 
-	 * @param number must not be {@literal null}.
+	 * @param number
+	 *            must not be {@literal null}.
 	 * @return
 	 */
 	CreditCard findByNumber(CreditCardNumber number);

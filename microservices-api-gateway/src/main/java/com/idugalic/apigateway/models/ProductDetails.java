@@ -1,19 +1,18 @@
 package com.idugalic.apigateway.models;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 import com.idugalic.apigateway.services.recommendations.Product;
 import com.idugalic.apigateway.services.reviews.Review;
 
 public class ProductDetails {
-    private String name;
-    private String productId;
-    private List<Review> reviews = new ArrayList<>();
-    private List<Product> recommendations = new ArrayList<>();
+	private String name;
+	private String productId;
+	private Collection<Review> reviews = new ArrayList<>();
+	private Collection<Product> recommendations = new ArrayList<>();
 
-  
-    public String getName() {
+	public String getName() {
 		return name;
 	}
 
@@ -29,19 +28,19 @@ public class ProductDetails {
 		this.productId = productId;
 	}
 
-	public List<Review> getReviews() {
-        return reviews;
-    }
+	public Collection<Review> getReviews() {
+		return reviews;
+	}
 
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
-    }
+	public void setReviews(Collection<Review> reviews2) {
+		this.reviews = reviews2;
+	}
 
-    public List<Product> getRecommendations() {
-        return recommendations;
-    }
+	public Collection<Product> getRecommendations() {
+		return recommendations;
+	}
 
-    public void setRecommendations(List<Product> recommendations) {
-        this.recommendations = recommendations;
-    }
+	public void setRecommendations(Collection<Product> recommendations) {
+		this.recommendations = recommendations;
+	}
 }

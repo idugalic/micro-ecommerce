@@ -7,5 +7,5 @@ import com.idugalic.reviews.models.Review;
 
 public interface ReviewRepository extends PagingAndSortingRepository<Review, String> {
 
-    Iterable<Review> findByProductId(@Param("productId") String productId);
+	Iterable<Review> findByProductId(@Param("productId") String productId);
 }

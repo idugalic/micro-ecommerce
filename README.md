@@ -86,20 +86,15 @@ Building on Spring Boot and Spring Security OAuth2 we can quickly create systems
 
 http://projects.spring.io/spring-cloud/docs/1.0.1/spring-cloud.html#_spring_cloud_security
 
-### Client 
-
-To enable the Oauth2 SSO you should include spring cloude security in your pom and use @EnableOAuth2Sso annotation.
 
 ### API Gateway
 
-To enable the Oauth2 SSO you should include spring cloude security in your pom, only in this case you need only 'token reley' functionality (don't place @EnableOAuth2Sso).
-A Token Relay is where an OAuth2 consumer acts as a Client and forwards the incoming token to outgoing resource requests. The consumer is API gateway (Resource Server) in this case.
-If your app has a Spring Cloud Zuul embedded reverse proxy (using @EnableZuulProxy) then you can ask it to forward OAuth2 access tokens downstream to the services it is proxying. 
+Implementation of an API gateway that is the single entry point for all clients. The API gateway handles requests in one of two ways. Some requests are simply proxied/routed to the appropriate service. It handles other requests by fanning out to multiple services.
 
 ## Running Instructions
 ### ___Local___
 - Before try to run the services, make sure you have Neo4J and MongoDB running on localhost (on default ports).
-- To run the services localy, just execute "mvn spring-boot:run" in each project subfolder. Run Authorization server project first.
+- To run the services localy, just execute "mvn spring-boot:run" in each project subfolder. Run Configuration server project first, then Authorizatins service ...
 - After you run services, trigger shell scripts under script folder of each service to create sample data.
 
 #### Usage
@@ -115,31 +110,4 @@ If your app has a Spring Cloud Zuul embedded reverse proxy (using @EnableZuulPro
 - Orders service(proxy): $ curl http://localhost:9000/orders -H "Authorization: Bearer <YOUR TOKEN>"
 - Mobile service (agregate): $ curl http://localhost:9000/product/1 -H "Authorization: Bearer <YOUR TOKEN>"
 
-#### HAL Browser.
-HAL browser is an API browser for the hal+json media type. 
 
-If you don't like command line CURL feel free to use HAL browser.
-It is available on the http://localhost:9000/browser/index.html address.
-
-Example of usage:
-
-
-- Get a token: $ curl -X POST -vu acme:acmesecret http://localhost:9999/uaa/oauth/token -H "Accept: application/json" -d "password=idugalic&username=idugalic&grant_type=password&scope=openid&client_secret=acmesecret&client_id=acme"
-- Paste your token in 'Custom Request Header' like this: Authorization: Bearer <YOUR TOKEN>
-- Explore the API :)
-
-### ___Docker___
-- Install Docker and Fig  on your machine.
-- You can run/install all your services and databases with one command '$ fig run' from root folder.
-- Fig is not mandatory (I had some problems with 32bit version of fig on bot2docker for windows). You can run fig as Docker container '$ docker run -v $(pwd):/app -v /var/run/docker.sock:/var/run/docker.sock -ti dduportal/fig up -d'
-- NOTE: I am runing boot2docker for Windows. Docker is running in virtual machine with IP of 192.168.59.103.
-
-## Roadmap
-
-- Create documentation. Use spring rest doc project. Awoid Swager
-- Create end to end tests.
-- create better metrics.
-- Use docker maven plugin. Remove fig and use docker compose.
-- Explore event driven microservices. CQRS. Eventsourcing. Eventstore.
-- Consider reactjs on the front end. Explore other libraries and frameworks. 
--

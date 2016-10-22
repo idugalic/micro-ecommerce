@@ -8,32 +8,32 @@ import org.springframework.data.neo4j.annotation.StartNode;
 @RelationshipEntity(type = "LIKES")
 public class Likes {
 
-    @GraphId
-    private Long id;
+	@GraphId
+	private Long id;
 
-    @StartNode
-    private Person person;
+	@StartNode
+	private Person person;
 
-    @EndNode
-    private Product product;
+	@EndNode
+	private Product product;
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public Person getPerson() {
-        return person;
-    }
+	public Person getPerson() {
+		return person;
+	}
 
-    public void setPerson(Person person) {
-        this.person = person;
-    }
+	public void setPerson(Person person) {
+		this.person = person;
+	}
 
-    public Product getProduct() {
+	public Product getProduct() {
 		return product;
 	}
 
@@ -42,11 +42,7 @@ public class Likes {
 	}
 
 	@Override
-    public String toString() {
-        return "Likes{" +
-                "id=" + id +
-                ", person=" + person +
-                ", product=" + product +
-                '}';
-    }
+	public String toString() {
+		return "Likes{" + "id=" + id + ", person=" + person + ", product=" + product + '}';
+	}
 }

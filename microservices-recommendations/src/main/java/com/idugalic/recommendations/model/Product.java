@@ -7,29 +7,25 @@ import org.springframework.data.neo4j.annotation.NodeEntity;
 @NodeEntity
 public class Product {
 
-    @GraphId
-    private Long id;
+	@GraphId
+	private Long id;
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", productId='" + productId + '\'' +
-                ", name='" + name + '\'' +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "Product{" + "id=" + id + ", productId='" + productId + '\'' + ", name='" + name + '\'' + '}';
+	}
 
-    @Indexed(unique = true)
-    private String productId;
-    private String name;
+	@Indexed(unique = true)
+	private String productId;
+	private String name;
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getProductId() {
 		return productId;
@@ -47,5 +43,4 @@ public class Product {
 		this.name = name;
 	}
 
-   
 }

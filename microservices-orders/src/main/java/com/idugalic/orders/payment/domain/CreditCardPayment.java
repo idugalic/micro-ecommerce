@@ -16,17 +16,17 @@ public class CreditCardPayment extends Payment {
 
 	@ManyToOne
 	private CreditCard creditCard;
-	
 
 	public CreditCardPayment() {
 		super();
 	}
 
-
 	/**
-	 * Creates a new {@link CreditCardPayment} for the given {@link CreditCard} and {@link Order}.
+	 * Creates a new {@link CreditCardPayment} for the given {@link CreditCard}
+	 * and {@link Order}.
 	 * 
-	 * @param creditCard must not be {@literal null}.
+	 * @param creditCard
+	 *            must not be {@literal null}.
 	 * @param order
 	 */
 	public CreditCardPayment(CreditCard creditCard, Order order) {
@@ -36,10 +36,8 @@ public class CreditCardPayment extends Payment {
 		this.creditCard = creditCard;
 	}
 
-
 	public CreditCard getCreditCard() {
 		return creditCard;
 	}
-	
-	
+
 }

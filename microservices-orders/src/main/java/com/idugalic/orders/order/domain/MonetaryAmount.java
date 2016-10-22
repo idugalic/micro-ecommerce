@@ -5,7 +5,6 @@ import java.util.Currency;
 
 import javax.persistence.Embeddable;
 
-
 import org.springframework.util.Assert;
 
 @Embeddable
@@ -19,6 +18,7 @@ public class MonetaryAmount {
 	public MonetaryAmount(Currency currency, double value) {
 		this(currency, new BigDecimal(value));
 	}
+
 	private MonetaryAmount(Currency currency, BigDecimal value) {
 
 		Assert.notNull(currency);
@@ -46,11 +46,13 @@ public class MonetaryAmount {
 		Assert.isTrue(this.currency.equals(other.currency));
 		return new MonetaryAmount(this.currency, this.value.add(other.value));
 	}
+
 	public Currency getCurrency() {
 		return currency;
 	}
+
 	public BigDecimal getValue() {
 		return value;
 	}
-	
+
 }

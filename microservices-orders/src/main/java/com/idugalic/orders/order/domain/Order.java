@@ -1,6 +1,5 @@
 package com.idugalic.orders.order.domain;
 
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -22,8 +21,8 @@ import org.springframework.hateoas.Identifiable;
 
 @Entity
 @Table(name = "WOrder")
-public class Order implements Identifiable<Long>{
-	
+public class Order implements Identifiable<Long> {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
@@ -32,7 +31,7 @@ public class Order implements Identifiable<Long>{
 	@Version
 	@Column(name = "version")
 	private Integer version;
-	
+
 	private Status status;
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime orderedDate;
@@ -44,6 +43,7 @@ public class Order implements Identifiable<Long>{
 		this.items.addAll(items);
 		this.orderedDate = new DateTime();
 	}
+
 	public Order(Item... items) {
 		this(Arrays.asList(items));
 	}
@@ -51,7 +51,7 @@ public class Order implements Identifiable<Long>{
 	public Order() {
 		super();
 	}
-	
+
 	public Long getId() {
 		return this.id;
 	}
@@ -67,8 +67,6 @@ public class Order implements Identifiable<Long>{
 	public void setVersion(Integer version) {
 		this.version = version;
 	}
-
-
 
 	public MonetaryAmount getPrice() {
 		MonetaryAmount result = MonetaryAmount.ZERO;
@@ -92,8 +90,8 @@ public class Order implements Identifiable<Long>{
 	public void markInPreparation() {
 
 		if (this.status != Status.PAID) {
-			throw new IllegalStateException(String.format("Order must be in state payed to start preparation! "
-					+ "Current status: %s", this.status));
+			throw new IllegalStateException(String
+					.format("Order must be in state payed to start preparation! " + "Current status: %s", this.status));
 		}
 
 		this.status = Status.PREPARING;
@@ -102,8 +100,9 @@ public class Order implements Identifiable<Long>{
 	public void markPrepared() {
 
 		if (this.status != Status.PREPARING) {
-			throw new IllegalStateException(String.format("Cannot mark Order prepared that is currently not "
-					+ "preparing! Current status: %s.", this.status));
+			throw new IllegalStateException(String.format(
+					"Cannot mark Order prepared that is currently not " + "preparing! Current status: %s.",
+					this.status));
 		}
 
 		this.status = Status.READY;
@@ -113,7 +112,6 @@ public class Order implements Identifiable<Long>{
 		return !this.status.equals(Status.PAYMENT_EXPECTED);
 	}
 
-	
 	public boolean isReady() {
 		return this.status.equals(Status.READY);
 	}
@@ -121,19 +119,19 @@ public class Order implements Identifiable<Long>{
 	public boolean isTaken() {
 		return this.status.equals(Status.TAKEN);
 	}
-	
+
 	public Status getStatus() {
 		return status;
 	}
-	
-	
+
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+
 	public DateTime getOrderedDate() {
 		return orderedDate;
 	}
-	
+
 	public Set<Item> getItems() {
 		return items;
 	}
@@ -166,4 +164,3 @@ public class Order implements Identifiable<Long>{
 		TAKEN;
 	}
 }
-

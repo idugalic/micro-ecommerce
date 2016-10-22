@@ -7,16 +7,10 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Microservices Ecommerce</name>
-	
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.2.5.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	
+
+
 	<modules>
-	    <module>microservices-authserver</module>
+		<module>microservices-authserver</module>
 		<module>microservices-api-gateway</module>
 		<module>microservices-config-server</module>
 		<module>microservices-eureka</module>
@@ -25,21 +19,46 @@
 		<module>microservices-reviews</module>
 		<module>microservices-recommendations</module>
 		<module>microservices-orders</module>
-		<module>client</module>
 	</modules>
-	
+
 	<properties>
-		<spring-cloud.version>Angel.SR3</spring-cloud.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+		<spring-cloud.version>Brixton.RELEASE</spring-cloud.version>
+		<spring-boot.version>1.3.8.RELEASE</spring-boot.version>
+		<spring-data-releasetrain.version>Fowler-SR2</spring-data-releasetrain.version>
+		<docker.image.prefix>idugalic</docker.image.prefix>
+		<docker.plugin.version>0.4.9</docker.plugin.version>
 	</properties>
-	
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring-boot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!-- Override Spring Data release train provided by Spring Boot -->
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-releasetrain</artifactId>
+				<version>${spring-data-releasetrain.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+			<dependency>
 				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-starter-parent</artifactId>
+				<artifactId>spring-cloud-dependencies</artifactId>
 				<version>${spring-cloud.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<version>${spring-boot.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

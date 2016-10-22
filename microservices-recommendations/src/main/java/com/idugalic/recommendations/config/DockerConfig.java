@@ -10,12 +10,12 @@ import org.springframework.data.neo4j.rest.SpringRestGraphDatabase;
 @Configuration
 @Profile("docker")
 public class DockerConfig extends Neo4jConfiguration {
-    public DockerConfig() {
-        setBasePackage("com.idugalic.recommendations.model");
-    }
+	public DockerConfig() {
+		setBasePackage("com.idugalic.recommendations.model");
+	}
 
-    @Bean
-    public GraphDatabaseService graphDatabaseService() {
-        return new SpringRestGraphDatabase("http://192.168.59.103:7474/db/data/");
-    }
+	@Bean
+	public GraphDatabaseService graphDatabaseService() {
+		return new SpringRestGraphDatabase("http://192.168.59.103:7474/db/data/");
+	}
 }

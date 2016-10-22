@@ -5,6 +5,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.idugalic.recommendations.model.Likes;
 
-@RepositoryRestResource(exported=false)
+@RepositoryRestResource(exported = false)
 public interface LikesRepository extends GraphRepository<Likes> {
 }

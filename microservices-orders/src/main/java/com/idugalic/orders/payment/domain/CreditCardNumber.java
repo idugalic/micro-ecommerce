@@ -3,7 +3,6 @@ package com.idugalic.orders.payment.domain;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
-
 /**
  * Value object to represent a {@link CreditCardNumber}.
  * 
@@ -13,7 +12,6 @@ import javax.persistence.Embeddable;
 public class CreditCardNumber {
 
 	private static final String regex = "[0-9]{16}";
-	
 
 	@Column(unique = true)
 	private String number;
@@ -21,7 +19,9 @@ public class CreditCardNumber {
 	/**
 	 * Creates a new {@link CreditCardNumber}.
 	 * 
-	 * @param number must not be {@literal null} and be a 16 digit numerical only String.
+	 * @param number
+	 *            must not be {@literal null} and be a 16 digit numerical only
+	 *            String.
 	 */
 	public CreditCardNumber(String number) {
 
@@ -31,15 +31,14 @@ public class CreditCardNumber {
 
 		this.number = number;
 	}
-	
 
 	public CreditCardNumber() {
 		super();
 	}
 
-
 	/**
-	 * Returns whether the given {@link String} is a valid {@link CreditCardNumber}.
+	 * Returns whether the given {@link String} is a valid
+	 * {@link CreditCardNumber}.
 	 * 
 	 * @param number
 	 * @return

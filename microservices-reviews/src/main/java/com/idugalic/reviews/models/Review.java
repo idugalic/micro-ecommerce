@@ -4,30 +4,30 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 
 public class Review {
-    @Id
-    private String id;
+	@Id
+	private String id;
 
-    @Indexed
-    private String productId;
+	@Indexed
+	private String productId;
 
-    @Indexed
-    private String userName;
+	@Indexed
+	private String userName;
 
-    private String name;
+	private String name;
 
-    private String review;
+	private String review;
 
-    private int rating;
+	private int rating;
 
-    public String getId() {
-        return id;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public String getProductId() {
+	public String getProductId() {
 		return productId;
 	}
 
@@ -44,28 +44,26 @@ public class Review {
 	}
 
 	public String getUserName() {
-        return userName;
-    }
+		return userName;
+	}
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-   
+	public String getReview() {
+		return review;
+	}
 
-    public String getReview() {
-        return review;
-    }
+	public void setReview(String review) {
+		this.review = review;
+	}
 
-    public void setReview(String review) {
-        this.review = review;
-    }
+	public int getRating() {
+		return rating;
+	}
 
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
 }

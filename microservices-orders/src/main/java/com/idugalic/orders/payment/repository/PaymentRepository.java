@@ -10,7 +10,7 @@ import com.idugalic.orders.payment.domain.Payment;
  * Repository interface to manage {@link Payment} instances.
  * 
  */
-@RepositoryRestResource(exported=false)
+@RepositoryRestResource(exported = false)
 public interface PaymentRepository extends PagingAndSortingRepository<Payment, Long> {
 
 	/**

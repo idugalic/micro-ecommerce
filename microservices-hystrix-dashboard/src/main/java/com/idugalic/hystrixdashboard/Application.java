@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class Application {
 
-    @RequestMapping("/")
-    public String home() {
-        return "forward:/hystrix";
-    }
+	@RequestMapping("/")
+	public String home() {
+		return "forward:/hystrix";
+	}
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
 }

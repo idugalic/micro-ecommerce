@@ -13,18 +13,18 @@ import com.idugalic.orders.order.domain.Order;
 import com.idugalic.orders.order.repository.OrderRepository;
 import com.idugalic.orders.payment.event.OrderPaidEvent;
 
-
 /**
- * Simple {@link ApplicationListener} implementation that listens to {@link OrderPaidEvent}s marking the according
- * {@link Order} as in process, sleeping for 10 seconds and marking the order as processed right after that.
+ * Simple {@link ApplicationListener} implementation that listens to
+ * {@link OrderPaidEvent}s marking the according {@link Order} as in process,
+ * sleeping for 10 seconds and marking the order as processed right after that.
  * 
  */
 @Service
 class Engine implements ApplicationListener<OrderPaidEvent>, InProgressAware {
 
 	private final OrderRepository repository;
-	private final  Set<Order> ordersInProgress;
-	
+	private final Set<Order> ordersInProgress;
+
 	@Autowired
 	public Engine(OrderRepository repository) {
 		this.repository = repository;
@@ -33,6 +33,7 @@ class Engine implements ApplicationListener<OrderPaidEvent>, InProgressAware {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.springsource.restbucks.engine.InProgressAware#getOrders()
 	 */
 	@Override
@@ -40,9 +41,12 @@ class Engine implements ApplicationListener<OrderPaidEvent>, InProgressAware {
 		return ordersInProgress;
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
-	 * @see org.springframework.context.ApplicationListener#onApplicationEvent(org.springframework.context.ApplicationEvent)
+	 * 
+	 * @see
+	 * org.springframework.context.ApplicationListener#onApplicationEvent(org.
+	 * springframework.context.ApplicationEvent)
 	 */
 	@Async
 	@Override
@@ -53,7 +57,6 @@ class Engine implements ApplicationListener<OrderPaidEvent>, InProgressAware {
 		order = repository.save(order);
 
 		ordersInProgress.add(order);
-
 
 		try {
 			Thread.sleep(5000);

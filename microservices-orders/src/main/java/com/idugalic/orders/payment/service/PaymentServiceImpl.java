@@ -1,7 +1,5 @@
 package com.idugalic.orders.payment.service;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,10 +15,9 @@ import com.idugalic.orders.payment.domain.Payment.Receipt;
 import com.idugalic.orders.payment.repository.CreditCardRepository;
 import com.idugalic.orders.payment.repository.PaymentRepository;
 
-
 /**
- * Implementation of {@link PaymentService} delegating persistence operations to {@link PaymentRepository} and
- * {@link CreditCardRepository}.
+ * Implementation of {@link PaymentService} delegating persistence operations to
+ * {@link PaymentRepository} and {@link CreditCardRepository}.
  * 
  */
 @Service
@@ -37,8 +34,7 @@ class PaymentServiceImpl implements PaymentService {
 		super();
 	}
 
-	public PaymentServiceImpl(CreditCardRepository creditCardRepository,
-			PaymentRepository paymentRepository,
+	public PaymentServiceImpl(CreditCardRepository creditCardRepository, PaymentRepository paymentRepository,
 			OrderRepository orderRepository) {
 		super();
 		this.creditCardRepository = creditCardRepository;
@@ -46,9 +42,12 @@ class PaymentServiceImpl implements PaymentService {
 		this.orderRepository = orderRepository;
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
-	 * @see org.springsource.restbucks.payment.PaymentService#pay(org.springsource.restbucks.order.Order, org.springsource.restbucks.payment.Payment)
+	 * 
+	 * @see
+	 * org.springsource.restbucks.payment.PaymentService#pay(org.springsource.
+	 * restbucks.order.Order, org.springsource.restbucks.payment.Payment)
 	 */
 	@Override
 	public CreditCardPayment pay(Order order, CreditCardNumber creditCardNumber) {
@@ -60,8 +59,8 @@ class PaymentServiceImpl implements PaymentService {
 		CreditCard creditCard = creditCardRepository.findByNumber(creditCardNumber);
 
 		if (creditCard == null) {
-			throw new PaymentException(order, String.format("No credit card found for number: %s",
-					creditCardNumber.getNumber()));
+			throw new PaymentException(order,
+					String.format("No credit card found for number: %s", creditCardNumber.getNumber()));
 		}
 
 		if (!creditCard.isValid()) {
@@ -73,9 +72,11 @@ class PaymentServiceImpl implements PaymentService {
 		return paymentRepository.save(new CreditCardPayment(creditCard, order));
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
-	 * @see org.springsource.restbucks.payment.PaymentService#getPaymentFor(org.springsource.restbucks.order.Order)
+	 * 
+	 * @see org.springsource.restbucks.payment.PaymentService#getPaymentFor(org.
+	 * springsource.restbucks.order.Order)
 	 */
 	@Override
 	@Transactional(readOnly = true)
@@ -83,9 +84,12 @@ class PaymentServiceImpl implements PaymentService {
 		return paymentRepository.findByOrder(order);
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
-	 * @see org.springsource.restbucks.payment.PaymentService#takeReceiptFor(org.springsource.restbucks.order.Order)
+	 * 
+	 * @see
+	 * org.springsource.restbucks.payment.PaymentService#takeReceiptFor(org.
+	 * springsource.restbucks.order.Order)
 	 */
 	@Override
 	public Receipt takeReceiptFor(Order order) {

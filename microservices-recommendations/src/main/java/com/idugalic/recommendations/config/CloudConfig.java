@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Profile;
 @Profile("cloud")
 public class CloudConfig extends AbstractCloudConfig {
 
-    @Bean
-    GraphDatabaseService graphDatabaseService() {
-        return connectionFactory().service(GraphDatabaseService.class);
-    }
+	@Bean
+	GraphDatabaseService graphDatabaseService() {
+		return connectionFactory().service(GraphDatabaseService.class);
+	}
 }

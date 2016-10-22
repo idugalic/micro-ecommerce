@@ -36,7 +36,7 @@ public class AuthserverApplication extends WebMvcConfigurerAdapter {
 	public static void main(String[] args) {
 		SpringApplication.run(AuthserverApplication.class, args);
 	}
-	
+
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/login").setViewName("login");
@@ -44,34 +44,32 @@ public class AuthserverApplication extends WebMvcConfigurerAdapter {
 	}
 
 	@Configuration
-	//@Order(ManagementServerProperties.ACCESS_OVERRIDE_ORDER)
+	// @Order(ManagementServerProperties.ACCESS_OVERRIDE_ORDER)
 	protected static class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-		
+
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
-			http.formLogin().loginPage("/login").permitAll().and().authorizeRequests()
-					.anyRequest().authenticated();
+			http.formLogin().loginPage("/login").permitAll().and().authorizeRequests().anyRequest().authenticated();
 		}
-		
+
 		@Override
 		protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-			auth.inMemoryAuthentication().
-			withUser("idugalic").roles("ADMIN").password("idugalic").
-			and().
-			withUser("odugalic").roles("USER").password("odugalic");
-			
+			auth.inMemoryAuthentication().withUser("idugalic").roles("ADMIN").password("idugalic").and()
+					.withUser("odugalic").roles("USER").password("odugalic");
+
 		}
+
 		@Override
-	    @Bean
-	    public AuthenticationManager authenticationManagerBean() throws Exception {
-	        return super.authenticationManagerBean();
-	    }
+		@Bean
+		public AuthenticationManager authenticationManagerBean() throws Exception {
+			return super.authenticationManagerBean();
+		}
 	}
 
 	@Configuration
 	@EnableAuthorizationServer
 	protected static class OAuth2Config extends AuthorizationServerConfigurerAdapter {
-		
+
 		@Autowired
 		@Qualifier("authenticationManagerBean")
 		private AuthenticationManager authenticationManager;
@@ -79,8 +77,7 @@ public class AuthserverApplication extends WebMvcConfigurerAdapter {
 		@Bean
 		public JwtAccessTokenConverter jwtAccessTokenConverter() {
 			JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-			KeyPair keyPair = new KeyStoreKeyFactory(
-					new ClassPathResource("keystore.jks"), "foobar".toCharArray())
+			KeyPair keyPair = new KeyStoreKeyFactory(new ClassPathResource("keystore.jks"), "foobar".toCharArray())
 					.getKeyPair("test");
 			converter.setKeyPair(keyPair);
 			return converter;
@@ -88,26 +85,20 @@ public class AuthserverApplication extends WebMvcConfigurerAdapter {
 
 		@Override
 		public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-			clients.inMemory()
-					.withClient("acme")
-					.secret("acmesecret")
-					.authorities("CLIENT")
-					.authorizedGrantTypes("authorization_code", "refresh_token", "client_credentials",
-							"password").scopes("openid","read_catalog","write_catalog","read_orders","write_orders","read_reviews","write_reviews","read_recommendations","write_recommendations");
+			clients.inMemory().withClient("acme").secret("acmesecret").authorities("CLIENT")
+					.authorizedGrantTypes("authorization_code", "refresh_token", "client_credentials", "password")
+					.scopes("openid", "read_catalog", "write_catalog", "read_orders", "write_orders", "read_reviews",
+							"write_reviews", "read_recommendations", "write_recommendations");
 		}
 
 		@Override
-		public void configure(AuthorizationServerEndpointsConfigurer endpoints)
-				throws Exception {
-			endpoints.authenticationManager(authenticationManager).accessTokenConverter(
-					jwtAccessTokenConverter());
+		public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+			endpoints.authenticationManager(authenticationManager).accessTokenConverter(jwtAccessTokenConverter());
 		}
 
 		@Override
-		public void configure(AuthorizationServerSecurityConfigurer oauthServer)
-				throws Exception {
-			oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess(
-					"isAuthenticated()");
+		public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
+			oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
 		}
 
 	}

@@ -1,6 +1,5 @@
 package com.idugalic.orders.payment.service;
 
-
 import org.springframework.util.Assert;
 
 import com.idugalic.orders.order.domain.Order;
@@ -24,5 +23,5 @@ public class PaymentException extends RuntimeException {
 	public Order getOrder() {
 		return order;
 	}
-	
+
 }
