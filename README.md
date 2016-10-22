@@ -46,7 +46,9 @@ Implementation of an API gateway that is the single entry point for all clients.
 
 http://microservices.io/patterns/apigateway.html
 
-## Configuration and management services:
+## Backing services
+The premise is that there are third-party service dependencies that should be treated as attached resources to your cloud native applications. The key trait of backing services are that they are provided as bindings to an application in its deployment environment by a cloud platform. Each of the backing services must be located using a statically defined route
+
 
 ### Config server
 
@@ -60,23 +62,19 @@ When the configuration service starts up, it will reference the path to those co
 
 With management endpoints available from Spring Cloud, you can make a configuration change in the environment and signal a refresh to the discovery service that will force all consumers to fetch the new configurations.
 
-### client side Discovery service (Eureka)
+### Service registry (Eureka)
+
+Netflix Eureka is a service registry. It provides a REST API for service instance registration management and for querying available instances. Netflix Ribbon is an IPC client that works with Eureka to load balance requests across the available service instances.
 
 When using client-side discovery, the client is responsible for determining the network locations of available service instances and load balancing requests across them. The client queries a service registry, which is a database of available service instances. The client then uses a load balancing algorithm to select one of the available service instances and makes a request.
 
 The client-side discovery pattern has a variety of benefits and drawbacks. This pattern is relatively straightforward and, except for the service registry, there are no other moving parts. Also, since the client knows about the available services instances it can make intelligent, application-specific load balancing decisions such as using hashing consistently. One significant drawback of this pattern is that it couples the client to the service registry. You must implement client-side service discovery logic for each programming language and framework used by your service clients
 
-Netflix Eureka is a service registry. It provides a REST API for service instance registration management and for querying available instances. Netflix Ribbon is an IPC client that works with Eureka to load balance requests across the available service instances.
 
 ### Authorization (Oauth2) server
 
 For issuing tokens and authorize requests.
 
-### Hystrix 
-
-Netflix has created a library called Hystrix that implements the circuit breaker pattern.
-
-A service failure in the lower level of services can cause cascading failure all the way up to the user. When calls to a particular service reach a certain threshold (20 failures in 5 seconds is the default in Hystrix), the circuit opens and the call is not made. In cases of error and an open circuit a fallback can be provided by the developer.
 
 ## Security
 
@@ -84,12 +82,6 @@ Spring Cloud Security offers a set of primitives for building secure application
 A declarative model which can be heavily configured externally (or centrally) lends itself to the implementation of large systems of co-operating, remote components, usually with a central indentity management service. It is also extremely easy to use in a service platform like Cloud Foundry. 
 Building on Spring Boot and Spring Security OAuth2 we can quickly create systems that implement common patterns like single sign on, token relay and token exchange.
 
-http://projects.spring.io/spring-cloud/docs/1.0.1/spring-cloud.html#_spring_cloud_security
-
-
-### API Gateway
-
-Implementation of an API gateway that is the single entry point for all clients. The API gateway handles requests in one of two ways. Some requests are simply proxied/routed to the appropriate service. It handles other requests by fanning out to multiple services.
 
 ## Running Instructions
 ### ___Local___
