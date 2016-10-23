@@ -43,13 +43,6 @@ The client-side discovery pattern has a variety of benefits and drawbacks. This 
 For issuing tokens and authorize requests.
 
 
-## Security
-
-Spring Cloud Security offers a set of primitives for building secure applications and services with minimum fuss. 
-A declarative model which can be heavily configured externally (or centrally) lends itself to the implementation of large systems of co-operating, remote components, usually with a central indentity management service. It is also extremely easy to use in a service platform like Cloud Foundry. 
-Building on Spring Boot and Spring Security OAuth2 we can quickly create systems that implement common patterns like single sign on, token relay and token exchange.
-
-
 ## Backend Microservices
 
 While the backing services in the middle layer are still considered to be microservices, they solve a set of concerns that are purely operational and security-related. The business logic of this application sits almost entirely in our bottom layer.
