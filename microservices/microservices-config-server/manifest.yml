@@ -1,6 +1,0 @@
----
-applications:
-- name: config-server
-  memory: 512M
-  host: config-server-idugalic
-  domain: cfapps.io
