@@ -10,14 +10,8 @@ The microservice architectural style is an approach to developing a single appli
 ![API gateway](https://i.imgsafe.org/cb23e2cd16.png)
 
 ## Backing services
-Our Desktop/Mobile application has direct HTTP connections to 4 other applications in the middle layer. These services are:
 
-- Authorization server
-- Config server
-- Eureka service
-- API gateway service
-
-Each of these Spring Boot applications are considered to be backing services to the Desktop/Mobile application. The Backing service is a term that was popularized in the twelve-factor methodology. The premise is that there are third-party service dependencies that should be treated as attached resources to your cloud native applications. The key trait of backing services are that they are provided as bindings to an application in its deployment environment by a cloud platform.
+The premise is that there are third-party service dependencies that should be treated as attached resources to your cloud native applications. The key trait of backing services are that they are provided as bindings to an application in its deployment environment by a cloud platform. Each of the backing services must be located using a statically defined route
 
 ###  API Gateway
 
