@@ -17,6 +17,8 @@ services:
       - config-server
     ports:
       - "8761:8761"
+    entrypoint: ./wait-for-it.sh config-server:8888 -t 60 --
+    command: java -Dspring.profiles.active=docker -jar /app.jar
   authserver:
     build: microservices-authserver/.
     working_dir: /
@@ -24,11 +26,15 @@ services:
       - config-server
     ports:
       - "9999:9999"
+    entrypoint: ./wait-for-it.sh config-server:8888 -t 60 --
+    command: java -Dspring.profiles.active=docker -jar /app.jar
   hystrix:
     build: microservices-hystrix-dashboard/.
     working_dir: /
     ports:
       - "7979:7979"
+    entrypoint: ./wait-for-it.sh config-server:8888 -t 60 --
+    command: java -Dspring.profiles.active=docker -jar /app.jar
   config-server:
     build: microservices-config-server/.
     working_dir: /
@@ -43,6 +49,8 @@ services:
       - eureka
     ports:
       - "8080:8080"
+    entrypoint: ./wait-for-it.sh config-server:8888 -t 60 --
+    command: java -Dspring.profiles.active=docker -jar /app.jar
   reviews:
     build: microservices-reviews/.
     working_dir: /
@@ -53,6 +61,8 @@ services:
       - mongodb
     ports:
       - "8081:8081"
+    entrypoint: ./wait-for-it.sh config-server:8888 -t 60 --
+    command: java -Dspring.profiles.active=docker -jar /app.jar
   recommendations:
     build: microservices-recommendations/.
     working_dir: /
@@ -63,6 +73,8 @@ services:
       - neo4j
     ports:
       - "8082:8082"
+    entrypoint: ./wait-for-it.sh config-server:8888 -t 60 --
+    command: java -Dspring.profiles.active=docker -jar /app.jar
   orders:
     build: microservices-orders/.
     working_dir: /
@@ -72,6 +84,8 @@ services:
       - eureka
     ports:
       - "8083:8083"
+    entrypoint: ./wait-for-it.sh config-server:8888 -t 60 --
+    command: java -Dspring.profiles.active=docker -jar /app.jar
   gateway:
     build: microservices-api-gateway/.
     working_dir: /
@@ -81,3 +95,5 @@ services:
       - eureka
     ports:
       - "9000:9000"
+    entrypoint: ./wait-for-it.sh config-server:8888 -t 60 --
+    command: java -Dspring.profiles.active=docker -jar /app.jar
