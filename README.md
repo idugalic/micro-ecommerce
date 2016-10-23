@@ -11,7 +11,7 @@ Rest-full, Hipermedia-based distributed  ecommerce application.
 - API Gateway (Reactive API proxy)
 
 
-![Alt text](https://github.com/idugalic/micro-ecommerce/blob/master/apigateway.png)
+![API gateway](https://i.imgsafe.org/cb23e2cd16.png)
 
 
 
