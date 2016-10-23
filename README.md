@@ -1,54 +1,21 @@
 # Ecommerce application
 
-Rest-full, Hipermedia-based distributed  ecommerce application.
+Rest-full, distributed, ecommerce application.
 
-## REST based micro-services with Spring Boot
+This project is intended to demonstrate end-to-end best practices for building a cloud native, microservice architecture using Spring Boot&Cloud.
 
-- Catalog(JPA-SQL product calatlog).
-- Reviews (MongoDB product reviews)
-- Recommendations (Neo4J recommendations)
-- Orders (JPA)
-- API Gateway (Reactive API proxy)
+# Architecture
 
+The microservice architectural style is an approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms, often an HTTP resource API.
 
-![API gateway](https://i.imgsafe.org/cb23e2cd16.png)
+## Backing services
 
-
-
-### Catalog
-
-The Catalog consists of categorized products. Products can be in one ore more categories, and category can contain one ore more products.
-Products and Categories are exposed as REST resources using Spring Data RESTs capability to automatically expose Spring Data JPA repositories contained in the application.
-
-### Reviews 
-
-Review is entity(document) related to product by productId and to customer(user) by userName. The repository under this service is MongoDb
-Reviews are exposed as REST resources using Spring Data RESTs capability to automatically expose Spring Data Mongo repositories contained in the application.
-
-### Recommendations 
-
-This service consists of Person and Product entities and Like relation entity that links them.
-Recommendations are exposed as REST resources using Spring Data RESTs capability to automatically expose Spring Data Neo4j(Graph) repositories contained in the application.
-
-### Orders
-
-The implementation consists of mainly two parts, the order and the payment part. The Orders are exposed as REST resources using Spring Data RESTs capability to automatically expose Spring Data JPA repositories contained in the application. The Payment process  are implemented manually using a Spring MVC controller (PaymentController).
-
-We're using Spring Data REST to expose the OrderRepository as REST resource without additional effort.
-
-Spring Hateoas provides a generic Resource abstraction that we leverage to create hypermedia-driven representations. Spring Data REST also leverages this abstraction so that we can deploy ResourceProcessor implementations (e.g. PaymentorderResourceProcessor) to enrich the representations for Order instance with links to the PaymentController.
-
+The premise is that there are third-party service dependencies that should be treated as attached resources to your cloud native applications. The key trait of backing services are that they are provided as bindings to an application in its deployment environment by a cloud platform. Each of the backing services must be located using a statically defined route
 
 
 ###  API Gateway
 
 Implementation of an API gateway that is the single entry point for all clients. The API gateway handles requests in one of two ways. Some requests are simply proxied/routed to the appropriate service. It handles other requests by fanning out to multiple services.
-
-http://microservices.io/patterns/apigateway.html
-
-## Backing services
-The premise is that there are third-party service dependencies that should be treated as attached resources to your cloud native applications. The key trait of backing services are that they are provided as bindings to an application in its deployment environment by a cloud platform. Each of the backing services must be located using a statically defined route
-
 
 ### Config server
 
@@ -81,6 +48,34 @@ For issuing tokens and authorize requests.
 Spring Cloud Security offers a set of primitives for building secure applications and services with minimum fuss. 
 A declarative model which can be heavily configured externally (or centrally) lends itself to the implementation of large systems of co-operating, remote components, usually with a central indentity management service. It is also extremely easy to use in a service platform like Cloud Foundry. 
 Building on Spring Boot and Spring Security OAuth2 we can quickly create systems that implement common patterns like single sign on, token relay and token exchange.
+
+
+## Backend Microservices
+
+While the backing services in the middle layer are still considered to be microservices, they solve a set of concerns that are purely operational and security-related. The business logic of this application sits almost entirely in our bottom layer.
+
+### Catalog
+
+The Catalog consists of categorized products. Products can be in one ore more categories, and category can contain one ore more products.
+Products and Categories are exposed as REST resources using Spring Data RESTs capability to automatically expose Spring Data JPA repositories contained in the application.
+
+### Reviews 
+
+Review is entity(document) related to product by productId and to customer(user) by userName. The repository under this service is MongoDb
+Reviews are exposed as REST resources using Spring Data RESTs capability to automatically expose Spring Data Mongo repositories contained in the application.
+
+### Recommendations 
+
+This service consists of Person and Product entities and Like relation entity that links them.
+Recommendations are exposed as REST resources using Spring Data RESTs capability to automatically expose Spring Data Neo4j(Graph) repositories contained in the application.
+
+### Orders
+
+The implementation consists of mainly two parts, the order and the payment part. The Orders are exposed as REST resources using Spring Data RESTs capability to automatically expose Spring Data JPA repositories contained in the application. The Payment process  are implemented manually using a Spring MVC controller (PaymentController).
+
+We're using Spring Data REST to expose the OrderRepository as REST resource without additional effort.
+
+Spring Hateoas provides a generic Resource abstraction that we leverage to create hypermedia-driven representations. Spring Data REST also leverages this abstraction so that we can deploy ResourceProcessor implementations (e.g. PaymentorderResourceProcessor) to enrich the representations for Order instance with links to the PaymentController.
 
 
 ## Running Instructions
