@@ -44,16 +44,7 @@
 <h2>
 <a id="backing-services" class="anchor" href="#backing-services" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Backing services</h2>
 
-<p>Our Desktop/Mobile application has direct HTTP connections to 4 other applications in the middle layer. These services are:</p>
-
-<ul>
-<li>Authorization server</li>
-<li>Config server</li>
-<li>Eureka service</li>
-<li>API gateway service</li>
-</ul>
-
-<p>Each of these Spring Boot applications are considered to be backing services to the Desktop/Mobile application. The Backing service is a term that was popularized in the twelve-factor methodology. The premise is that there are third-party service dependencies that should be treated as attached resources to your cloud native applications. The key trait of backing services are that they are provided as bindings to an application in its deployment environment by a cloud platform.</p>
+<p>The premise is that there are third-party service dependencies that should be treated as attached resources to your cloud native applications. The key trait of backing services are that they are provided as bindings to an application in its deployment environment by a cloud platform. Each of the backing services must be located using a statically defined route</p>
 
 <h3>
 <a id="api-gateway" class="anchor" href="#api-gateway" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>API Gateway</h3>
