@@ -4,7 +4,7 @@ Rest-full, distributed, ecommerce application.
 
 This project is intended to demonstrate end-to-end best practices for building a cloud native, microservice architecture using Spring Boot&Cloud.
 
-# Architecture
+## Architecture
 
 The microservice architectural style is an approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms, often an HTTP resource API.
 ![API gateway](https://i.imgsafe.org/cb23e2cd16.png)
@@ -149,5 +149,17 @@ $ curl http://localhost:9000/orders -H "Authorization: Bearer <YOUR TOKEN>"
 ```bash
 $ curl http://localhost:9000/product/1 -H "Authorization: Bearer <YOUR TOKEN>"
 ```
+
+## References and further reading
+
+  * http://martinfowler.com/articles/microservices.html
+  * http://microservices.io/
+  * http://www.slideshare.net/chris.e.richardson/developing-eventdriven-microservices-with-event-sourcing-and-cqrs-phillyete
+  * http://12factor.net/
+  * http://pivotal.io/platform/migrating-to-cloud-native-application-architectures-ebook
+  * http://pivotal.io/beyond-the-twelve-factor-app
+  * https://blog.docker.com/2016/02/containers-as-a-service-caas/
+  * http://www.kennybastani.com/2016/04/event-sourcing-microservices-spring-cloud.html
+  
 
 
