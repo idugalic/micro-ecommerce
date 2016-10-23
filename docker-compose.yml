@@ -1,0 +1,83 @@
+version: "2"
+
+services:
+  mongodb:
+    image: mongo:3.0.4
+    command: mongod --smallfiles
+    ports:
+      - "27017:27017"
+  neo4j:
+    image: tpires/neo4j
+    ports:
+      - "7474:7474"
+  eureka:
+    build: microservices-eureka/.
+    working_dir: /
+    links:
+      - config-server
+    ports:
+      - "8761:8761"
+  authserver:
+    build: microservices-authserver/.
+    working_dir: /
+    links:
+      - config-server
+    ports:
+      - "9999:9999"
+  hystrix:
+    build: microservices-hystrix-dashboard/.
+    working_dir: /
+    ports:
+      - "7979:7979"
+  config-server:
+    build: microservices-config-server/.
+    working_dir: /
+    ports:
+      - "8888:8888"
+  catalog:
+    build: microservices-catalog/.
+    working_dir: /
+    links:
+      - config-server
+      - authserver
+      - eureka
+    ports:
+      - "8080:8080"
+  reviews:
+    build: microservices-reviews/.
+    working_dir: /
+    links:
+      - config-server
+      - authserver
+      - eureka
+      - mongodb
+    ports:
+      - "8081:8081"
+  recommendations:
+    build: microservices-recommendations/.
+    working_dir: /
+    links:
+      - config-server
+      - authserver
+      - eureka
+      - neo4j
+    ports:
+      - "8082:8082"
+  orders:
+    build: microservices-orders/.
+    working_dir: /
+    links:
+      - config-server
+      - authserver
+      - eureka
+    ports:
+      - "8083:8083"
+  gateway:
+    build: microservices-api-gateway/.
+    working_dir: /
+    links:
+      - config-server
+      - authserver
+      - eureka
+    ports:
+      - "9000:9000"

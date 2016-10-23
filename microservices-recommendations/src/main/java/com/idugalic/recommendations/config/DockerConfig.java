@@ -16,6 +16,6 @@ public class DockerConfig extends Neo4jConfiguration {
 
 	@Bean
 	public GraphDatabaseService graphDatabaseService() {
-		return new SpringRestGraphDatabase("http://192.168.59.103:7474/db/data/");
+		return new SpringRestGraphDatabase("http://neo4j:7474/db/data/");
 	}
 }

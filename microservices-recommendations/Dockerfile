@@ -1,6 +1,6 @@
 FROM java:8
 MAINTAINER idugalic@gmail.com
 EXPOSE 8082
-ENV APPLICATION_DOMAIN 192.168.59.103
-ADD target/*.jar /recommendations.jar
-ENTRYPOINT ["java","-Dspring.profiles.active=docker","-jar","/recommendations.jar"]
+ADD target/*.jar /app.jar
+RUN bash -c 'touch /app.jar'
+CMD ["java","-Dspring.profiles.active=docker","-jar","/app.jar"]
