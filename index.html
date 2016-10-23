@@ -1,0 +1,228 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>micro-ecommerce by idugalic</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>micro-ecommerce</h1>
+        <p>Rest-full, Hipermedia-based distributed ecommerce application.</p>
+
+        <p class="view"><a href="https://github.com/idugalic/micro-ecommerce">View the Project on GitHub <small>idugalic/micro-ecommerce</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/idugalic/micro-ecommerce/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/idugalic/micro-ecommerce/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/idugalic/micro-ecommerce">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="application-micro-ecommerce" class="anchor" href="#application-micro-ecommerce" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Application 'Micro Ecommerce'</h1>
+
+<p>Rest-full, distributed, ecommerce application.</p>
+
+<p>This project is intended to demonstrate end-to-end best practices for building a cloud native, microservice architecture using Spring Boot&amp;Cloud.</p>
+
+<h2>
+<a id="architecture" class="anchor" href="#architecture" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Architecture</h2>
+
+<p>The microservice architectural style is an approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms, often an HTTP resource API.
+<img src="https://i.imgsafe.org/cb23e2cd16.png" alt="API gateway"></p>
+
+<h2>
+<a id="backing-services" class="anchor" href="#backing-services" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Backing services</h2>
+
+<p>Our Desktop/Mobile application has direct HTTP connections to 4 other applications in the middle layer. These services are:</p>
+
+<ul>
+<li>Authorization server</li>
+<li>Config server</li>
+<li>Eureka service</li>
+<li>API gateway service</li>
+</ul>
+
+<p>Each of these Spring Boot applications are considered to be backing services to the Desktop/Mobile application. The Backing service is a term that was popularized in the twelve-factor methodology. The premise is that there are third-party service dependencies that should be treated as attached resources to your cloud native applications. The key trait of backing services are that they are provided as bindings to an application in its deployment environment by a cloud platform.</p>
+
+<h3>
+<a id="api-gateway" class="anchor" href="#api-gateway" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>API Gateway</h3>
+
+<p>Implementation of an API gateway that is the single entry point for all clients. The API gateway handles requests in one of two ways. Some requests are simply proxied/routed to the appropriate service. It handles other requests by fanning out to multiple services.</p>
+
+<h3>
+<a id="config-server" class="anchor" href="#config-server" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Config server</h3>
+
+<p>The configuration service is a vital component of any microservices architecture. Based on the twelve-factor app methodology, configurations for your microservice applications should be stored in the environment and not in the project.</p>
+
+<p>The configuration service is essential because it handles the configurations for all of the services through a simple point-to-point service call to retrieve those configurations. The advantages of this are multi-purpose.</p>
+
+<p>Let's assume that we have multiple deployment environments. If we have a staging environment and a production environment, configurations for those environments will be different. A configuration service might have a dedicated Git repository for the configurations of that environment. None of the other environments will be able to access this configuration, it is available only to the configuration service running in that environment.</p>
+
+<p>When the configuration service starts up, it will reference the path to those configuration files and begin to serve them up to the microservices that request those configurations. Each microservice can have their configuration file configured to the specifics of the environment that it is running in. In doing this, the configuration is both externalized and centralized in one place that can be version-controlled and revised without having to restart a service to change a configuration.</p>
+
+<p>With management endpoints available from Spring Cloud, you can make a configuration change in the environment and signal a refresh to the discovery service that will force all consumers to fetch the new configurations.</p>
+
+<h3>
+<a id="service-registry-eureka" class="anchor" href="#service-registry-eureka" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Service registry (Eureka)</h3>
+
+<p>Netflix Eureka is a service registry. It provides a REST API for service instance registration management and for querying available instances. Netflix Ribbon is an IPC client that works with Eureka to load balance requests across the available service instances.</p>
+
+<p>When using client-side discovery, the client is responsible for determining the network locations of available service instances and load balancing requests across them. The client queries a service registry, which is a database of available service instances. The client then uses a load balancing algorithm to select one of the available service instances and makes a request.</p>
+
+<p>The client-side discovery pattern has a variety of benefits and drawbacks. This pattern is relatively straightforward and, except for the service registry, there are no other moving parts. Also, since the client knows about the available services instances it can make intelligent, application-specific load balancing decisions such as using hashing consistently. One significant drawback of this pattern is that it couples the client to the service registry. You must implement client-side service discovery logic for each programming language and framework used by your service clients</p>
+
+<h3>
+<a id="authorization-oauth2-server" class="anchor" href="#authorization-oauth2-server" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authorization (Oauth2) server</h3>
+
+<p>For issuing tokens and authorize requests.</p>
+
+<h2>
+<a id="backend-microservices" class="anchor" href="#backend-microservices" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Backend Microservices</h2>
+
+<p>While the backing services in the middle layer are still considered to be microservices, they solve a set of concerns that are purely operational and security-related. The business logic of this application sits almost entirely in our bottom layer.</p>
+
+<h3>
+<a id="catalog" class="anchor" href="#catalog" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Catalog</h3>
+
+<p>The Catalog consists of categorized products. Products can be in one ore more categories, and category can contain one ore more products.
+Products and Categories are exposed as REST resources using Spring Data RESTs capability to automatically expose Spring Data JPA repositories contained in the application.</p>
+
+<h3>
+<a id="reviews" class="anchor" href="#reviews" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Reviews</h3>
+
+<p>Review is entity(document) related to product by productId and to customer(user) by userName. The repository under this service is MongoDb
+Reviews are exposed as REST resources using Spring Data RESTs capability to automatically expose Spring Data Mongo repositories contained in the application.</p>
+
+<h3>
+<a id="recommendations" class="anchor" href="#recommendations" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Recommendations</h3>
+
+<p>This service consists of Person and Product entities and Like relation entity that links them.
+Recommendations are exposed as REST resources using Spring Data RESTs capability to automatically expose Spring Data Neo4j(Graph) repositories contained in the application.</p>
+
+<h3>
+<a id="orders" class="anchor" href="#orders" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Orders</h3>
+
+<p>The implementation consists of mainly two parts, the order and the payment part. The Orders are exposed as REST resources using Spring Data RESTs capability to automatically expose Spring Data JPA repositories contained in the application. The Payment process  are implemented manually using a Spring MVC controller (PaymentController).</p>
+
+<p>We're using Spring Data REST to expose the OrderRepository as REST resource without additional effort.</p>
+
+<p>Spring Hateoas provides a generic Resource abstraction that we leverage to create hypermedia-driven representations. Spring Data REST also leverages this abstraction so that we can deploy ResourceProcessor implementations (e.g. PaymentorderResourceProcessor) to enrich the representations for Order instance with links to the PaymentController.</p>
+
+<h2>
+<a id="running-instructions" class="anchor" href="#running-instructions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Running Instructions</h2>
+
+<h3>
+<a id="via-maven-spring-boot" class="anchor" href="#via-maven-spring-boot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Via maven (spring boot)</h3>
+
+<p>Make sure you have Neo4J and MongoDB running on localhost (on default ports).</p>
+
+<div class="highlight highlight-source-shell"><pre>$ <span class="pl-c1">cd</span> micro-ecommerce/microservices-config-server
+$ mvn spring-boot:run</pre></div>
+
+<div class="highlight highlight-source-shell"><pre>$ <span class="pl-c1">cd</span> micro-ecommerce/microservices-eureka
+$ mvn spring-boot:run</pre></div>
+
+<div class="highlight highlight-source-shell"><pre>$ <span class="pl-c1">cd</span> micro-ecommerce/microservices-authserver
+$ mvn spring-boot:run</pre></div>
+
+<p>...</p>
+
+<ul>
+<li>Repeat this for all other services that you want to run. Please note that the order is important (config-server, erureka, authserver)</li>
+<li>After you run services, trigger shell scripts under script folder of each service to create sample data.</li>
+</ul>
+
+<h3>
+<a id="via-docker" class="anchor" href="#via-docker" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Via docker</h3>
+
+<div class="highlight highlight-source-shell"><pre>$ <span class="pl-c1">cd</span> micro-ecommerce
+$ mvn clean install
+$ docker-compose up --build -d</pre></div>
+
+<h4>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h4>
+
+<h5>
+<a id="get-a-token" class="anchor" href="#get-a-token" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Get a token:</h5>
+
+<div class="highlight highlight-source-shell"><pre>$ curl -X POST -vu acme:acmesecret http://localhost:9999/uaa/oauth/token -H <span class="pl-s"><span class="pl-pds">"</span>Accept: application/json<span class="pl-pds">"</span></span> -d <span class="pl-s"><span class="pl-pds">"</span>password=idugalic&amp;username=idugalic&amp;grant_type=password&amp;client_secret=acmesecret&amp;client_id=acme<span class="pl-pds">"</span></span></pre></div>
+
+<h5>
+<a id="catalog-service" class="anchor" href="#catalog-service" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Catalog service:</h5>
+
+<div class="highlight highlight-source-shell"><pre>$ curl http://localhost:8080/ -H <span class="pl-s"><span class="pl-pds">"</span>Authorization: Bearer &lt;YOUR TOKEN&gt;<span class="pl-pds">"</span></span></pre></div>
+
+<h5>
+<a id="reviews-service" class="anchor" href="#reviews-service" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Reviews service:</h5>
+
+<div class="highlight highlight-source-shell"><pre>$ curl http://localhost:8081/ -H <span class="pl-s"><span class="pl-pds">"</span>Authorization: Bearer &lt;YOUR TOKEN&gt;<span class="pl-pds">"</span></span></pre></div>
+
+<h5>
+<a id="recommendations-service" class="anchor" href="#recommendations-service" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Recommendations service:</h5>
+
+<div class="highlight highlight-source-shell"><pre>$ curl http://localhost:8082/ -H <span class="pl-s"><span class="pl-pds">"</span>Authorization: Bearer &lt;YOUR TOKEN&gt;<span class="pl-pds">"</span></span></pre></div>
+
+<h5>
+<a id="orders-service" class="anchor" href="#orders-service" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Orders service:</h5>
+
+<div class="highlight highlight-source-shell"><pre>$ curl http://localhost:8083/ -H <span class="pl-s"><span class="pl-pds">"</span>Authorization: Bearer &lt;YOUR TOKEN&gt;<span class="pl-pds">"</span></span></pre></div>
+
+<h5>
+<a id="catalog-serviceproxy-" class="anchor" href="#catalog-serviceproxy-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Catalog service(proxy) :</h5>
+
+<div class="highlight highlight-source-shell"><pre>$ curl http://localhost:9000/catalog -H <span class="pl-s"><span class="pl-pds">"</span>Authorization: Bearer &lt;YOUR TOKEN&gt;<span class="pl-pds">"</span></span></pre></div>
+
+<h5>
+<a id="reviews-serviceproxy" class="anchor" href="#reviews-serviceproxy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Reviews service(proxy):</h5>
+
+<div class="highlight highlight-source-shell"><pre>$ curl http://localhost:9000/reviews -H <span class="pl-s"><span class="pl-pds">"</span>Authorization: Bearer &lt;YOUR TOKEN&gt;<span class="pl-pds">"</span></span></pre></div>
+
+<h5>
+<a id="recommendations-serviceproxy" class="anchor" href="#recommendations-serviceproxy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Recommendations service(proxy):</h5>
+
+<div class="highlight highlight-source-shell"><pre>$ curl http://localhost:9000/recommendations -H <span class="pl-s"><span class="pl-pds">"</span>Authorization: Bearer &lt;YOUR TOKEN&gt;<span class="pl-pds">"</span></span></pre></div>
+
+<h5>
+<a id="orders-serviceproxy" class="anchor" href="#orders-serviceproxy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Orders service(proxy):</h5>
+
+<div class="highlight highlight-source-shell"><pre>$ curl http://localhost:9000/orders -H <span class="pl-s"><span class="pl-pds">"</span>Authorization: Bearer &lt;YOUR TOKEN&gt;<span class="pl-pds">"</span></span></pre></div>
+
+<h5>
+<a id="mobile-service-aggregate" class="anchor" href="#mobile-service-aggregate" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Mobile service (aggregate):</h5>
+
+<div class="highlight highlight-source-shell"><pre>$ curl http://localhost:9000/product/1 -H <span class="pl-s"><span class="pl-pds">"</span>Authorization: Bearer &lt;YOUR TOKEN&gt;<span class="pl-pds">"</span></span></pre></div>
+
+<h2>
+<a id="references-and-further-reading" class="anchor" href="#references-and-further-reading" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>References and further reading</h2>
+
+<ul>
+<li><a href="http://martinfowler.com/articles/microservices.html">http://martinfowler.com/articles/microservices.html</a></li>
+<li><a href="http://microservices.io/">http://microservices.io/</a></li>
+<li><a href="http://www.slideshare.net/chris.e.richardson/developing-eventdriven-microservices-with-event-sourcing-and-cqrs-phillyete">http://www.slideshare.net/chris.e.richardson/developing-eventdriven-microservices-with-event-sourcing-and-cqrs-phillyete</a></li>
+<li><a href="http://12factor.net/">http://12factor.net/</a></li>
+<li><a href="http://pivotal.io/platform/migrating-to-cloud-native-application-architectures-ebook">http://pivotal.io/platform/migrating-to-cloud-native-application-architectures-ebook</a></li>
+<li><a href="http://pivotal.io/beyond-the-twelve-factor-app">http://pivotal.io/beyond-the-twelve-factor-app</a></li>
+<li><a href="https://blog.docker.com/2016/02/containers-as-a-service-caas/">https://blog.docker.com/2016/02/containers-as-a-service-caas/</a></li>
+<li><a href="http://www.kennybastani.com/2016/04/event-sourcing-microservices-spring-cloud.html">http://www.kennybastani.com/2016/04/event-sourcing-microservices-spring-cloud.html</a></li>
+</ul>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/idugalic">idugalic</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
