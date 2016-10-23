@@ -1,4 +1,4 @@
-# Ecommerce application
+# Application 'Micro Ecommerce'
 
 Rest-full, distributed, ecommerce application.
 
