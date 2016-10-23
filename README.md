@@ -7,6 +7,7 @@ This project is intended to demonstrate end-to-end best practices for building a
 # Architecture
 
 The microservice architectural style is an approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms, often an HTTP resource API.
+![API gateway](https://i.imgsafe.org/cb23e2cd16.png)
 
 ## Backing services
 
