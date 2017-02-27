@@ -1,8 +1,38 @@
-# Application 'Micro Ecommerce'
-
-Rest-full, distributed, ecommerce application.
+# [projects](http://idugalic.github.io/projects)/micro-ecommerce
 
 This project is intended to demonstrate end-to-end best practices for building a cloud native, microservice architecture using Spring Boot&Cloud.
+
+## Table of Contents
+
+   * [Application 'Micro Ecommerce'](#application-micro-ecommerce)
+      * [What is cloud native](#what-is-cloud-native)
+      * [Architecture](#architecture)
+      * [Backing services](#backing-services)
+         * [API Gateway](#api-gateway)
+         * [Config server](#config-server)
+         * [Service registry (Eureka)](#service-registry-eureka)
+         * [Authorization (Oauth2) server](#authorization-oauth2-server)
+      * [Backend Microservices](#backend-microservices)
+         * [Catalog](#catalog)
+         * [Reviews](#reviews)
+         * [Recommendations](#recommendations)
+         * [Orders](#orders)
+      * [Running Instructions](#running-instructions)
+         * [Via maven (spring boot)](#via-maven-spring-boot)
+         * [Via docker](#via-docker)
+            * [Usage](#usage)
+               * [Get a token:](#get-a-token)
+               * [Catalog service:](#catalog-service)
+               * [Reviews service:](#reviews-service)
+               * [Recommendations service:](#recommendations-service)
+               * [Orders service:](#orders-service)
+               * [Catalog service(proxy) :](#catalog-serviceproxy-)
+               * [Reviews service(proxy):](#reviews-serviceproxy)
+               * [Recommendations service(proxy):](#recommendations-serviceproxy)
+               * [Orders service(proxy):](#orders-serviceproxy)
+               * [Mobile service (aggregate):](#mobile-service-aggregate)
+      * [References and further reading](#references-and-further-reading)
+
 
 ## What is cloud native
 

@@ -7,7 +7,7 @@ services:
     ports:
       - "27017:27017"
   neo4j:
-    image: tpires/neo4j
+    image: neo4j:2.3.0
     ports:
       - "7474:7474"
   eureka:
