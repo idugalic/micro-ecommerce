@@ -1,4 +1,4 @@
-# [projects](http://idugalic.github.io/projects)/micro-ecommerce
+# [projects](http://idugalic.github.io/projects)/micro-ecommerce [![Build Status](https://travis-ci.org/idugalic/micro-ecommerce.svg?branch=master)](https://travis-ci.org/idugalic/micro-ecommerce)
 
 This project is intended to demonstrate end-to-end best practices for building a cloud native, microservice architecture using Spring Boot&Cloud.
 
