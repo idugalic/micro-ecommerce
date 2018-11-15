@@ -44,7 +44,7 @@ A cloud-native application is an application that has been designed and implemen
 ## Architecture
 
 The microservice architectural style is an approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms, often an HTTP resource API.
-![API gateway](https://i.imgsafe.org/cb23e2cd16.png)
+![API gateway](apigateway.png)
 
 ## Backing services
 
